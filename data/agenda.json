@@ -1,0 +1,44 @@
+[
+  {
+    "id": "a001",
+    "tipo": "test_drive",
+    "titulo": "Test Drive - Carlos García (Corolla)",
+    "fecha": "2025-04-21",
+    "hora": "10:00",
+    "cliente_id": "c001",
+    "cliente_nombre": "Carlos García",
+    "vehiculo_id": "v001",
+    "vehiculo_texto": "Toyota Corolla XEI 2022",
+    "vendedor_id": "u002",
+    "notas": "Viene con su señora. Prefiere el turno de la mañana.",
+    "completado": false
+  },
+  {
+    "id": "a002",
+    "tipo": "seguimiento",
+    "titulo": "Llamar a Roberto Sánchez - Tasación Ranger",
+    "fecha": "2025-04-22",
+    "hora": "11:00",
+    "cliente_id": "c003",
+    "cliente_nombre": "Roberto Sánchez",
+    "vehiculo_id": "v004",
+    "vehiculo_texto": "Ford Ranger XLS 2021",
+    "vendedor_id": "u002",
+    "notas": "Confirmar si acepta la oferta de permuta.",
+    "completado": false
+  },
+  {
+    "id": "a003",
+    "tipo": "tarea",
+    "titulo": "Actualizar fotos Hilux en el sistema",
+    "fecha": "2025-04-20",
+    "hora": "09:00",
+    "cliente_id": null,
+    "cliente_nombre": null,
+    "vehiculo_id": "v009",
+    "vehiculo_texto": "Toyota Hilux SRX 2025",
+    "vendedor_id": "u001",
+    "notas": "Sacar fotos profesionales y cargarlas al sistema.",
+    "completado": false
+  }
+]

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PEP Motors — Tu próximo auto, a un click</title>
+  <meta name="description" content="Concesionario de autos 0km y usados. Amplio stock, la mejor financiación y atención personalizada.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/img/logo.png" alt="PEP Motors" id="nav-logo">
+      </a>
+      <div class="navbar-links">
+        <a href="index.html" class="active">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="financiacion.html">Financiación</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="navbar-actions">
+        <a href="#" id="whatsapp-nav" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="admin/index.html" class="navbar-admin-btn">Admin</a>
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="financiacion.html">Financiación</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-glow-tl"></div>
+    <div class="hero-glow-br"></div>
+    <div class="hero-watermark">PEP</div>
+    <div class="hero-accent-line"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-content hero-inner-grid">
+
+      <!-- LEFT: Copy -->
+      <div>
+        <div class="hero-overline">
+          <span id="hero-overline-text">Concesionario Oficial · Buenos Aires</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="hero-title-line" id="hero-title-1">Encontrá</span>
+          <span class="hero-title-accent" id="hero-title-2">tu auto</span>
+          <span class="hero-title-line" id="hero-title-3">ideal.</span>
+        </h1>
+
+        <p class="hero-subtitle" id="hero-subtitle">El mayor stock de vehículos 0km y usados de la zona, con la mejor financiación.</p>
+
+        <div class="hero-actions">
+          <a href="catalogo.html" class="btn btn-primary btn-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Ver catálogo
+          </a>
+          <a href="#contacto" class="btn btn-outline btn-lg">Contactanos</a>
+        </div>
+
+        <div class="hero-stats-strip">
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="hero-count-stat">—</span>
+            <span class="hero-stat-label">Vehículos disponibles</span>
+          </div>
+          <div class="sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="hero-anios-stat">12</span>
+            <span class="hero-stat-label">Años de experiencia</span>
+          </div>
+          <div class="sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="hero-clientes-stat">850</span>
+            <span class="hero-stat-label">Clientes satisfechos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Search card -->
+      <div>
+        <div class="hero-search">
+          <p class="hero-search-title">Buscador rápido</p>
+          <p class="hero-search-sub">Encontrá el auto que buscás entre todo nuestro stock</p>
+          <div class="hero-search-grid">
+            <div>
+              <label>Marca</label>
+              <select id="hs-marca" onchange="filterHeroModelo()">
+                <option value="">Todas las marcas</option>
+              </select>
+            </div>
+            <div>
+              <label>Condición</label>
+              <select id="hs-condicion">
+                <option value="">Cualquiera</option>
+                <option value="0km">0KM</option>
+                <option value="usado">Usado</option>
+              </select>
+            </div>
+            <div>
+              <label>Modelo</label>
+              <select id="hs-modelo">
+                <option value="">Todos</option>
+              </select>
+            </div>
+            <div>
+              <label>Precio máx.</label>
+              <input type="number" id="hs-precio" placeholder="Sin límite">
+            </div>
+          </div>
+          <div class="hero-search-btn-row">
+            <button class="btn btn-primary btn-block btn-lg" onclick="heroSearch()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Buscar vehículo
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number" id="stat-autos" data-counter="0">0</span>
+        <p class="stat-label">Vehículos disponibles</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <span class="stat-number" data-counter="12" id="stat-anios">0</span>
+        <p class="stat-label">Años en el mercado</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <span class="stat-number" data-counter="850" id="stat-clientes">0</span>
+        <p class="stat-label">Clientes satisfechos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED VEHICLES -->
+<section class="section" id="destacados">
+  <div class="container">
+    <div class="reveal" style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:40px; flex-wrap:wrap; gap:16px">
+      <div>
+        <p class="section-tag">Inventario</p>
+        <div class="gradient-line"></div>
+        <h2 class="section-title">Vehículos destacados</h2>
+      </div>
+      <a href="catalogo.html" class="btn btn-outline">
+        Ver todo el catálogo
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="vehicles-grid" id="featured-grid">
+      <div class="vehicle-card"><div style="height:280px" class="skeleton"></div></div>
+      <div class="vehicle-card"><div style="height:280px" class="skeleton"></div></div>
+      <div class="vehicle-card"><div style="height:280px" class="skeleton"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCING -->
+<section class="section financing-section" id="financiacion">
+  <div class="container">
+    <div class="financing-grid reveal">
+      <div>
+        <p class="section-tag">Financiación</p>
+        <div class="gradient-line"></div>
+        <h2 class="section-title">Financiá tu próximo auto</h2>
+        <p class="section-subtitle">Tenemos las mejores opciones de financiamiento para que te lleves el auto que querés sin complicaciones.</p>
+        <div class="financing-options" id="fin-options">
+          <!-- from config -->
+        </div>
+        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap">
+          <a href="contacto.html" class="btn btn-primary">Consultá financiación</a>
+          <a href="financiacion.html" class="btn btn-outline">Ver opciones</a>
+        </div>
+      </div>
+      <div class="financing-visual">
+        <div style="margin-bottom:8px">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" width="48" height="48"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="financing-visual-number" id="tasa-display">65%</div>
+        <div class="financing-visual-label">Tasa anual — hasta 60 cuotas</div>
+        <div style="border-top:1px solid var(--color-dark-3);margin-top:20px;padding-top:20px">
+          <p style="font-size:13px;color:var(--color-gray)">Tu asesor te arma la mejor opción según tu perfil</p>
+          <a href="contacto.html" class="btn btn-primary btn-block" style="margin-top:12px">Consultá ahora →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TASACION -->
+<section class="section tasacion-section" id="tasacion">
+  <div class="container">
+    <div class="tasacion-grid reveal">
+      <div>
+        <p class="section-tag">Vendé tu auto</p>
+        <div class="gradient-line"></div>
+        <h2 class="section-title">¿Querés vender tu auto?</h2>
+        <p class="section-subtitle">Tasamos tu vehículo sin compromiso. Proceso rápido, precio justo y pago inmediato.</p>
+        <ul style="margin-top:24px; display:flex; flex-direction:column; gap:12px">
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--color-light-gray)">
+            <span style="width:28px;height:28px;border-radius:50%;background:rgba(200,16,46,0.15);display:flex;align-items:center;justify-content:center;color:var(--color-primary);font-size:12px;font-weight:700;flex-shrink:0">1</span>
+            Completá el formulario con los datos de tu auto
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--color-light-gray)">
+            <span style="width:28px;height:28px;border-radius:50%;background:rgba(200,16,46,0.15);display:flex;align-items:center;justify-content:center;color:var(--color-primary);font-size:12px;font-weight:700;flex-shrink:0">2</span>
+            Te contactamos en menos de 24hs con una oferta
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--color-light-gray)">
+            <span style="width:28px;height:28px;border-radius:50%;background:rgba(200,16,46,0.15);display:flex;align-items:center;justify-content:center;color:var(--color-primary);font-size:12px;font-weight:700;flex-shrink:0">3</span>
+            Cerramos la operación y te pagamos de inmediato
+          </li>
+        </ul>
+      </div>
+      <div class="tasacion-form">
+        <h3>Tasá tu auto</h3>
+        <form id="tasacion-form" onsubmit="submitTasacion(event)">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Tu nombre <span class="required">*</span></label>
+              <input type="text" class="form-control" id="tas-nombre" required placeholder="Juan García">
+            </div>
+            <div class="form-group">
+              <label>Teléfono <span class="required">*</span></label>
+              <input type="tel" class="form-control" id="tas-telefono" required placeholder="11 1234-5678">
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Marca</label>
+              <input type="text" class="form-control" id="tas-marca" placeholder="Toyota">
+            </div>
+            <div class="form-group">
+              <label>Modelo y año</label>
+              <input type="text" class="form-control" id="tas-modelo" placeholder="Corolla 2019">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Kilometraje aprox.</label>
+            <input type="number" class="form-control" id="tas-km" placeholder="50000">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            Solicitar tasación gratuita
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section testimonials-section" id="testimonios-section">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:48px">
+      <p class="section-tag">Testimonios</p>
+      <div class="gradient-line"></div>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="testimonials-grid" id="testimonials-grid">
+      <!-- loaded -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/logo.png" alt="PEP Motors" id="footer-logo">
+        <p id="footer-slogan">Tu próximo auto, a un click.</p>
+        <div class="footer-social" id="footer-social">
+          <!-- loaded -->
+        </div>
+      </div>
+      <div>
+        <p class="footer-heading">Navegación</p>
+        <div class="footer-links">
+          <a href="catalogo.html">Catálogo</a>
+          <a href="financiacion.html">Financiación</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="contacto.html">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-heading">Servicios</p>
+        <div class="footer-links">
+          <a href="financiacion.html">Simulador de cuotas</a>
+          <a href="catalogo.html?condicion=0km">Vehículos 0KM</a>
+          <a href="catalogo.html?condicion=usado">Vehículos usados</a>
+          <a href="#tasacion">Tasación</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-heading">Contacto</p>
+        <div id="footer-contact">
+          <!-- loaded -->
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footer-copy">© 2025 PEP Motors. Todos los derechos reservados.</p>
+      <p style="font-size:12px;color:var(--color-gray)">Sitio web desarrollado para PEP Motors</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a href="#" id="whatsapp-float" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Modal tasacion confirmación -->
+<div class="modal-overlay" id="modal-tasacion">
+  <div class="modal" style="max-width:420px;text-align:center">
+    <div class="modal-body" style="padding:40px 28px">
+      <div style="width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;color:var(--color-success);margin:0 auto 20px">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 style="font-family:var(--font-title);font-size:20px;font-weight:700;margin-bottom:8px">¡Solicitud enviada!</h3>
+      <p style="color:var(--color-light-gray);font-size:15px;margin-bottom:24px">Te contactaremos en menos de 24hs con la tasación de tu vehículo.</p>
+      <button class="btn btn-primary btn-block" onclick="closeModal('modal-tasacion')">Entendido</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal lead vehículo -->
+<div class="modal-overlay" id="modal-lead">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-header">
+      <h2 class="modal-title">Me interesa este vehículo</h2>
+      <button class="modal-close" onclick="closeModal('modal-lead')" data-modal-close>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:14px;color:var(--color-light-gray);margin-bottom:16px">Dejanos tus datos y un asesor te contactará a la brevedad.</p>
+      <div class="form-grid-2">
+        <div class="form-group"><label>Nombre <span class="required">*</span></label><input type="text" class="form-control" id="lead-nombre" required></div>
+        <div class="form-group"><label>Teléfono <span class="required">*</span></label><input type="tel" class="form-control" id="lead-telefono" required></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" class="form-control" id="lead-email"></div>
+      <div class="form-group"><label>Mensaje</label><textarea class="form-control" id="lead-mensaje" rows="3" placeholder="¿Alguna consulta puntual?"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-lead')">Cancelar</button>
+      <button class="btn btn-primary" onclick="submitLead()">
+        Enviar consulta
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+
+<script src="assets/js/storage.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  let config = {}, vehiculos = [];
+
+  async function init() {
+    [config, vehiculos] = await Promise.all([Storage.get('config'), Storage.get('vehiculos')]);
+    applyConfig();
+    loadFeatured();
+    loadFinancing();
+    loadTestimonios();
+    initCounters();
+  }
+
+  function applyConfig() {
+    const e = config.empresa || {};
+    const r = config.redes || {};
+    const ap = config.apariencia || {};
+
+    // Hero text
+    document.getElementById('hero-subtitle').textContent = e.hero_subtitulo || 'El mayor stock de vehículos 0km y usados de la zona, con la mejor financiación.';
+    if (e.hero_titulo) {
+      const words = e.hero_titulo.split(' ');
+      const mid = Math.ceil(words.length / 2);
+      document.getElementById('hero-title-1').textContent = words.slice(0, mid).join(' ');
+      document.getElementById('hero-title-2').textContent = words.slice(mid).join(' ');
+      document.getElementById('hero-title-3').textContent = '';
+    }
+
+    // Hero stats strip
+    const disponibles = vehiculos.filter(v => v.estado === 'disponible').length;
+    document.getElementById('hero-count-stat').textContent = disponibles;
+    document.getElementById('hero-anios-stat').textContent = e.stats_anios || 12;
+    document.getElementById('hero-clientes-stat').textContent = (e.stats_clientes || 850) + '+';
+
+    // Section counters
+    document.getElementById('stat-autos').dataset.counter = disponibles;
+    document.getElementById('stat-anios').dataset.counter = e.stats_anios || 12;
+    document.getElementById('stat-clientes').dataset.counter = e.stats_clientes || 850;
+
+    // WhatsApp
+    const wa = e.whatsapp || '';
+    const waHref = wa ? `https://wa.me/${wa}` : '#';
+    document.getElementById('whatsapp-nav').href = waHref;
+    document.getElementById('whatsapp-float').href = waHref;
+
+    // Color
+    if (ap.color_primario) {
+      document.documentElement.style.setProperty('--color-primary', ap.color_primario);
+    }
+
+    // Footer
+    document.getElementById('footer-slogan').textContent = e.slogan || 'Tu próximo auto, a un click.';
+    document.getElementById('footer-copy').textContent = `© ${new Date().getFullYear()} ${e.nombre || 'PEP Motors'}. Todos los derechos reservados.`;
+
+    const contactHtml = [
+      e.direccion && `<div class="footer-contact-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>${e.direccion}</span></div>`,
+      e.telefono && `<div class="footer-contact-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:${e.telefono}" style="color:inherit">${e.telefono}</a></div>`,
+      e.email && `<div class="footer-contact-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:${e.email}" style="color:inherit">${e.email}</a></div>`,
+      e.horario && `<div class="footer-contact-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>${e.horario}</span></div>`,
+    ].filter(Boolean).join('');
+    document.getElementById('footer-contact').innerHTML = contactHtml;
+
+    // Social
+    const socialBtns = [
+      r.instagram && `<a href="${r.instagram}" target="_blank" rel="noopener" class="social-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>`,
+      r.facebook && `<a href="${r.facebook}" target="_blank" rel="noopener" class="social-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>`,
+    ].filter(Boolean).join('');
+    document.getElementById('footer-social').innerHTML = socialBtns;
+
+    // Sections visibility
+    const sec = config.secciones_home || {};
+    if (sec.destacados === false) document.getElementById('destacados').style.display = 'none';
+    if (sec.financiacion === false) document.getElementById('financiacion').style.display = 'none';
+    if (sec.tasacion === false) document.getElementById('tasacion').style.display = 'none';
+    if (sec.testimonios === false) document.getElementById('testimonios-section').style.display = 'none';
+
+    // Build marca select for hero search
+    const marcas = [...new Set(vehiculos.filter(v => v.estado === 'disponible').map(v => v.marca))].sort();
+    const marcaSelect = document.getElementById('hs-marca');
+    marcas.forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = m;
+      opt.textContent = m;
+      marcaSelect.appendChild(opt);
+    });
+  }
+
+  function loadFeatured() {
+    const destacados = vehiculos.filter(v => v.destacado && v.estado === 'disponible').slice(0, 6);
+    document.getElementById('featured-grid').innerHTML = destacados.length
+      ? destacados.map(v => buildVehicleCard(v)).join('')
+      : '<p style="color:var(--color-gray);grid-column:span 3;text-align:center;padding:40px">Sin vehículos destacados por ahora</p>';
+  }
+
+  function loadFinancing() {
+    const fin = config.financiacion || {};
+    const tasa = fin.tasa_interes || 65;
+    document.getElementById('tasa-display').textContent = tasa + '%';
+    const opciones = fin.opciones || [];
+    const icons = { 'Crédito Prendario': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`, 'Plan de Ahorro': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`, 'Leasing': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`, default: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>` };
+    document.getElementById('fin-options').innerHTML = opciones.slice(0, 4).map(o => `
+      <div class="financing-option">
+        <div class="financing-option-icon">${icons[o.titulo] || icons.default}</div>
+        <h4>${o.titulo}</h4>
+        <p>${o.descripcion}</p>
+      </div>`).join('');
+  }
+
+  function loadTestimonios() {
+    const ts = config.testimonios || [];
+    document.getElementById('testimonials-grid').innerHTML = ts.map(t => {
+      const stars = '★'.repeat(t.estrellas || 5) + '☆'.repeat(5 - (t.estrellas || 5));
+      return `
+        <div class="testimonial-card">
+          <div class="testimonial-stars">${[...stars].map((s,i) => `<span style="color:${i<(t.estrellas||5)?'var(--color-warning)':'var(--color-dark-4)'}">${s}</span>`).join('')}</div>
+          <p class="testimonial-text">"${t.texto}"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">${t.nombre.charAt(0)}</div>
+            <div>
+              <p class="testimonial-name">${t.nombre}</p>
+              <p class="testimonial-role">${t.cargo || 'Cliente PEP Motors'}</p>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function filterHeroModelo() {
+    const marca = document.getElementById('hs-marca').value;
+    const modeloSel = document.getElementById('hs-modelo');
+    const modelos = marca
+      ? [...new Set(vehiculos.filter(v => v.marca === marca && v.estado === 'disponible').map(v => v.modelo))].sort()
+      : [];
+    modeloSel.innerHTML = '<option value="">Todos</option>' + modelos.map(m => `<option value="${m}">${m}</option>`).join('');
+  }
+
+  function heroSearch() {
+    const marca = document.getElementById('hs-marca').value;
+    const modelo = document.getElementById('hs-modelo').value;
+    const condicion = document.getElementById('hs-condicion').value;
+    const precio = document.getElementById('hs-precio').value;
+    const params = new URLSearchParams();
+    if (marca) params.set('marca', marca);
+    if (modelo) params.set('modelo', modelo);
+    if (condicion) params.set('condicion', condicion);
+    if (precio) params.set('precio_max', precio);
+    window.location.href = 'catalogo.html?' + params.toString();
+  }
+
+  async function submitTasacion(e) {
+    e.preventDefault();
+    const lead = {
+      id: Storage.generateId('l'),
+      nombre: document.getElementById('tas-nombre').value.trim(),
+      telefono: document.getElementById('tas-telefono').value.trim(),
+      email: '',
+      vehiculo_id: null,
+      vehiculo_texto: `${document.getElementById('tas-marca').value} ${document.getElementById('tas-modelo').value} — ${document.getElementById('tas-km').value}km`,
+      fuente: 'web',
+      estado: 'nuevo',
+      vendedor_id: null,
+      fecha_creacion: new Date().toISOString(),
+      ultima_actividad: new Date().toISOString(),
+      historial: [{ fecha: new Date().toISOString(), tipo: 'tasacion', nota: 'Solicitud de tasación desde la home.' }],
+      notas: 'Tasación solicitada desde sitio público.',
+    };
+    await Storage.add('leads', lead);
+    document.getElementById('tasacion-form').reset();
+    openModal('modal-tasacion');
+  }
+
+  let currentVehicleId = null;
+  window.openLeadModal = function(vehicleId) {
+    currentVehicleId = vehicleId;
+    openModal('modal-lead');
+  };
+
+  async function submitLead() {
+    const nombre = document.getElementById('lead-nombre').value.trim();
+    const telefono = document.getElementById('lead-telefono').value.trim();
+    if (!nombre || !telefono) { showToast('Nombre y teléfono son obligatorios', 'error'); return; }
+    const v = vehiculos.find(x => x.id === currentVehicleId);
+    const lead = {
+      id: Storage.generateId('l'),
+      nombre,
+      telefono,
+      email: document.getElementById('lead-email').value.trim(),
+      vehiculo_id: currentVehicleId,
+      vehiculo_texto: v ? `${v.marca} ${v.modelo} ${v.anio}` : '',
+      fuente: 'web',
+      estado: 'nuevo',
+      vendedor_id: null,
+      fecha_creacion: new Date().toISOString(),
+      ultima_actividad: new Date().toISOString(),
+      historial: [{ fecha: new Date().toISOString(), tipo: 'consulta_web', nota: `Consulta desde el sitio. Mensaje: ${document.getElementById('lead-mensaje').value.trim() || 'Sin mensaje.'}` }],
+      notas: document.getElementById('lead-mensaje').value.trim(),
+    };
+    await Storage.add('leads', lead);
+    closeModal('modal-lead');
+    showToast('¡Consulta enviada! Te contactaremos pronto.', 'success', 4000);
+  }
+
+  init();
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+[
+  {
+    "id": "l001",
+    "nombre": "Carlos García",
+    "email": "carlos.garcia@gmail.com",
+    "telefono": "1155556666",
+    "vehiculo_id": "v001",
+    "vehiculo_texto": "Toyota Corolla XEI 2022",
+    "fuente": "web",
+    "estado": "contactado",
+    "vendedor_id": "u002",
+    "fecha_creacion": "2025-04-10T10:30:00",
+    "ultima_actividad": "2025-04-11T14:00:00",
+    "historial": [
+      {
+        "fecha": "2025-04-10T10:30:00",
+        "tipo": "consulta_web",
+        "nota": "Consultó por el Corolla desde la ficha del vehículo. Interesado en financiación."
+      },
+      {
+        "fecha": "2025-04-11T14:00:00",
+        "tipo": "llamada",
+        "nota": "Se lo llamó, quedó en pasar el sábado a ver el auto."
+      }
+    ],
+    "notas": "Busca auto familiar. Tiene entrada de $5M."
+  },
+  {
+    "id": "l002",
+    "nombre": "Sofía Méndez",
+    "email": "sofia.mendez@hotmail.com",
+    "telefono": "1167778888",
+    "vehiculo_id": "v002",
+    "vehiculo_texto": "Volkswagen Polo GTS 2023",
+    "fuente": "instagram",
+    "estado": "nuevo",
+    "vendedor_id": null,
+    "fecha_creacion": "2025-04-18T16:45:00",
+    "ultima_actividad": "2025-04-18T16:45:00",
+    "historial": [
+      {
+        "fecha": "2025-04-18T16:45:00",
+        "tipo": "consulta_web",
+        "nota": "Llegó desde Instagram. Preguntó por el Polo GTS rojo."
+      }
+    ],
+    "notas": ""
+  },
+  {
+    "id": "l003",
+    "nombre": "Roberto Sánchez",
+    "email": "rsanchez@empresa.com.ar",
+    "telefono": "1144445555",
+    "vehiculo_id": "v004",
+    "vehiculo_texto": "Ford Ranger XLS 2021",
+    "fuente": "whatsapp",
+    "estado": "negociacion",
+    "vendedor_id": "u002",
+    "fecha_creacion": "2025-04-05T09:00:00",
+    "ultima_actividad": "2025-04-17T11:30:00",
+    "historial": [
+      {
+        "fecha": "2025-04-05T09:00:00",
+        "tipo": "whatsapp",
+        "nota": "Consultó por WhatsApp por la Ranger. Quiere permutar su Amarok 2018."
+      },
+      {
+        "fecha": "2025-04-08T10:00:00",
+        "tipo": "visita",
+        "nota": "Vino a ver la pickup. Le gustó mucho. Pidió esperar para tasar el Amarok."
+      },
+      {
+        "fecha": "2025-04-17T11:30:00",
+        "tipo": "llamada",
+        "nota": "Tasación del Amarok lista: $18M. Está evaluando la diferencia."
+      }
+    ],
+    "notas": "Empresa de construcción. Puede financiar a nombre de la empresa."
+  },
+  {
+    "id": "l004",
+    "nombre": "Luciana Pérez",
+    "email": "luci.perez@yahoo.com",
+    "telefono": "1199990000",
+    "vehiculo_id": "v005",
+    "vehiculo_texto": "Chevrolet Tracker Premier 2023",
+    "fuente": "referido",
+    "estado": "cerrado",
+    "vendedor_id": "u003",
+    "fecha_creacion": "2025-03-20T15:00:00",
+    "ultima_actividad": "2025-04-02T12:00:00",
+    "historial": [
+      {
+        "fecha": "2025-03-20T15:00:00",
+        "tipo": "presencial",
+        "nota": "Vino referida por Carlos García. Interesada en el Tracker."
+      },
+      {
+        "fecha": "2025-03-25T10:00:00",
+        "tipo": "llamada",
+        "nota": "Confirmó financiación aprobada por el banco."
+      },
+      {
+        "fecha": "2025-04-02T12:00:00",
+        "tipo": "venta",
+        "nota": "Venta cerrada. Entrega del vehículo realizada."
+      }
+    ],
+    "notas": "Cliente satisfecha. Dejó 5 estrellas en Google."
+  }
+]

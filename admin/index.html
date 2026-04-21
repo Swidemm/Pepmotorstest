@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — PEP Motors</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="../assets/img/logo.png" alt="PEP Motors">
+        <p class="login-title">Panel Admin</p>
+        <p class="login-subtitle">Ingresá con tu cuenta de PEP Motors</p>
+      </div>
+
+      <div class="login-error" id="login-error">Email o contraseña incorrectos.</div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" id="email" placeholder="usuario@pepmotors.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" class="form-control" id="password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:8px" id="login-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Ingresar
+        </button>
+      </form>
+
+      <div style="margin-top:20px; padding:14px; background:rgba(255,255,255,0.04); border-radius:8px; font-size:12px; color:var(--color-gray);">
+        <strong style="color:var(--color-light-gray)">Demo:</strong><br>
+        admin@pepmotors.com / admin1234<br>
+        vcruz@pepmotors.com / valen123
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/storage.js"></script>
+  <script src="../assets/js/admin/auth.js"></script>
+  <script>
+    // Redirect if already logged in
+    if (Auth.getSession()) window.location.href = 'dashboard.html';
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('login-btn');
+      const errEl = document.getElementById('login-error');
+      errEl.style.display = 'none';
+      btn.disabled = true;
+      btn.textContent = 'Ingresando...';
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      const session = await Auth.login(email, password);
+      if (session) {
+        window.location.href = 'dashboard.html';
+      } else {
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> Ingresar`;
+      }
+    });
+  </script>
+</body>
+</html>

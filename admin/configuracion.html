@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración — PEP Motors Admin</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout" id="admin-layout">
+  <div id="sidebar-container"></div>
+  <main class="admin-main">
+    <div id="topbar-container"></div>
+    <div class="admin-content">
+
+      <div class="page-header-admin mb-6">
+        <h1 class="page-title">Configuración general</h1>
+        <p class="page-subtitle">Todo lo que aparece en el sitio público se controla desde acá</p>
+      </div>
+
+      <div class="tabs" id="config-tabs">
+        <button class="tab-btn active" data-tab="empresa">Empresa</button>
+        <button class="tab-btn" data-tab="home">Home</button>
+        <button class="tab-btn" data-tab="financiacion">Financiación</button>
+        <button class="tab-btn" data-tab="testimonios">Testimonios</button>
+        <button class="tab-btn" data-tab="equipo">Equipo</button>
+        <button class="tab-btn" data-tab="apariencia">Apariencia</button>
+        <button class="tab-btn" data-tab="usuarios">Usuarios</button>
+      </div>
+
+      <!-- EMPRESA -->
+      <div class="tab-pane active" id="tab-empresa">
+        <div class="form-section">
+          <p class="form-section-title">🏢 Datos de la empresa</p>
+          <div class="form-grid-2">
+            <div class="form-group"><label>Nombre</label><input type="text" class="form-control" id="cfg-nombre"></div>
+            <div class="form-group"><label>Slogan</label><input type="text" class="form-control" id="cfg-slogan"></div>
+            <div class="form-group"><label>Teléfono</label><input type="text" class="form-control" id="cfg-telefono"></div>
+            <div class="form-group"><label>WhatsApp (con código país, sin +)</label><input type="text" class="form-control" id="cfg-whatsapp" placeholder="5491112345678"></div>
+            <div class="form-group"><label>Email</label><input type="email" class="form-control" id="cfg-email"></div>
+            <div class="form-group"><label>Horario</label><input type="text" class="form-control" id="cfg-horario" placeholder="Lun–Vie 9:00 a 18:00"></div>
+          </div>
+          <div class="form-group"><label>Dirección</label><input type="text" class="form-control" id="cfg-direccion"></div>
+          <div class="form-group"><label>Embed URL de Google Maps</label><input type="text" class="form-control" id="cfg-maps" placeholder="https://www.google.com/maps/embed?..."></div>
+        </div>
+        <div class="form-section">
+          <p class="form-section-title">📱 Redes sociales</p>
+          <div class="form-grid-2">
+            <div class="form-group"><label>Instagram URL</label><input type="text" class="form-control" id="cfg-instagram"></div>
+            <div class="form-group"><label>Facebook URL</label><input type="text" class="form-control" id="cfg-facebook"></div>
+            <div class="form-group"><label>TikTok URL</label><input type="text" class="form-control" id="cfg-tiktok"></div>
+            <div class="form-group"><label>YouTube URL</label><input type="text" class="form-control" id="cfg-youtube"></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <p class="form-section-title">Historia de la empresa</p>
+          <div class="form-group"><textarea class="form-control" id="cfg-historia" rows="4"></textarea></div>
+        </div>
+        <button class="btn btn-primary" onclick="saveSection('empresa')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Guardar datos de empresa
+        </button>
+      </div>
+
+      <!-- HOME -->
+      <div class="tab-pane" id="tab-home">
+        <div class="form-section">
+          <p class="form-section-title">🏠 Hero</p>
+          <div class="form-group"><label>Título principal (H1)</label><input type="text" class="form-control" id="cfg-hero-titulo"></div>
+          <div class="form-group"><label>Subtítulo</label><input type="text" class="form-control" id="cfg-hero-subtitulo"></div>
+        </div>
+        <div class="form-section">
+          <p class="form-section-title">📊 Estadísticas</p>
+          <div class="form-grid-2">
+            <div class="form-group"><label>Años en el mercado</label><input type="number" class="form-control" id="cfg-stats-anios"></div>
+            <div class="form-group"><label>Clientes satisfechos</label><input type="number" class="form-control" id="cfg-stats-clientes"></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <p class="form-section-title">🔘 Secciones visibles en la home</p>
+          <div style="display:flex;gap:20px;flex-wrap:wrap">
+            <label class="form-check"><input type="checkbox" id="sec-destacados"> Vehículos destacados</label>
+            <label class="form-check"><input type="checkbox" id="sec-financiacion"> Financiación</label>
+            <label class="form-check"><input type="checkbox" id="sec-tasacion"> Tasación</label>
+            <label class="form-check"><input type="checkbox" id="sec-testimonios"> Testimonios</label>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="saveSection('home')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Guardar home
+        </button>
+      </div>
+
+      <!-- FINANCIACION -->
+      <div class="tab-pane" id="tab-financiacion">
+        <div class="form-section">
+          <p class="form-section-title">💰 Simulador</p>
+          <div class="form-grid-2">
+            <div class="form-group"><label>Tasa de interés anual (%)</label><input type="number" class="form-control" id="cfg-tasa" step="0.1"></div>
+          </div>
+          <p style="font-size:12px;font-weight:700;color:var(--color-gray);margin-bottom:8px">Plazos disponibles</p>
+          <div style="display:flex;gap:16px;flex-wrap:wrap">
+            <label class="form-check"><input type="checkbox" value="12" class="plazo-check"> 12 cuotas</label>
+            <label class="form-check"><input type="checkbox" value="24" class="plazo-check"> 24 cuotas</label>
+            <label class="form-check"><input type="checkbox" value="36" class="plazo-check"> 36 cuotas</label>
+            <label class="form-check"><input type="checkbox" value="48" class="plazo-check"> 48 cuotas</label>
+            <label class="form-check"><input type="checkbox" value="60" class="plazo-check"> 60 cuotas</label>
+          </div>
+        </div>
+        <div class="form-section">
+          <p class="form-section-title">Opciones de financiamiento</p>
+          <div id="opciones-fin" style="display:flex;flex-direction:column;gap:12px"></div>
+        </div>
+        <button class="btn btn-primary" onclick="saveSection('financiacion')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Guardar financiación
+        </button>
+      </div>
+
+      <!-- TESTIMONIOS -->
+      <div class="tab-pane" id="tab-testimonios">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+          <button class="btn btn-primary btn-sm" onclick="addTestimonio()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Agregar testimonio
+          </button>
+        </div>
+        <div id="testimonios-list" style="display:flex;flex-direction:column;gap:10px"></div>
+        <button class="btn btn-primary" style="margin-top:16px" onclick="saveSection('testimonios')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/></svg>
+          Guardar testimonios
+        </button>
+      </div>
+
+      <!-- EQUIPO -->
+      <div class="tab-pane" id="tab-equipo">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+          <button class="btn btn-primary btn-sm" onclick="addEquipo()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Agregar miembro
+          </button>
+        </div>
+        <div id="equipo-list" style="display:flex;flex-direction:column;gap:10px"></div>
+        <button class="btn btn-primary" style="margin-top:16px" onclick="saveSection('equipo')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/></svg>
+          Guardar equipo
+        </button>
+      </div>
+
+      <!-- APARIENCIA -->
+      <div class="tab-pane" id="tab-apariencia">
+        <div class="form-section">
+          <p class="form-section-title">🎨 Apariencia</p>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Color principal</label>
+              <div style="display:flex;gap:10px;align-items:center">
+                <input type="color" id="cfg-color" value="#C9A060" style="width:48px;height:38px;border:none;background:none;cursor:pointer;border-radius:8px">
+                <input type="text" class="form-control" id="cfg-color-hex" placeholder="#C9A060" style="flex:1">
+              </div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--color-gray);margin-top:4px">El color se aplica en tiempo real al guardar.</p>
+        </div>
+        <button class="btn btn-primary" onclick="saveSection('apariencia')">Guardar apariencia</button>
+      </div>
+
+      <!-- USUARIOS -->
+      <div class="tab-pane" id="tab-usuarios">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+          <button class="btn btn-primary btn-sm" onclick="openUserModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nuevo usuario
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead><tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Estado</th><th style="text-align:right">Acciones</th></tr></thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- User modal -->
+<div class="modal-overlay" id="user-modal">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h2 class="modal-title" id="user-modal-title">Nuevo usuario</h2>
+      <button class="modal-close" onclick="document.getElementById('user-modal').classList.remove('active')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="u-id">
+      <div class="form-group"><label>Nombre *</label><input type="text" class="form-control" id="u-nombre" required></div>
+      <div class="form-group"><label>Email *</label><input type="email" class="form-control" id="u-email" required></div>
+      <div class="form-group"><label>Contraseña</label><input type="password" class="form-control" id="u-password" placeholder="Dejar vacío para no cambiar"></div>
+      <div class="form-group">
+        <label>Rol</label>
+        <select class="form-control" id="u-rol">
+          <option value="vendedor">Vendedor</option>
+          <option value="gerente">Gerente</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <label class="form-check"><input type="checkbox" id="u-activo" checked> Usuario activo</label>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="document.getElementById('user-modal').classList.remove('active')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveUser()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/admin/auth.js"></script>
+<script src="../assets/js/admin/sidebar.js"></script>
+<script>
+  Auth.require(['admin']);
+  const session = Auth.getSession();
+  document.getElementById('sidebar-container').innerHTML = renderSidebar('configuracion');
+  document.getElementById('topbar-container').innerHTML = renderTopbar('Configuración', '');
+  initSidebar();
+
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  let config = {};
+  let allUsers = [];
+
+  async function loadConfig() {
+    config = await Storage.get('config');
+    allUsers = await Storage.get('usuarios');
+    fillForm();
+    renderUsers();
+  }
+
+  function fillForm() {
+    const e = config.empresa || {};
+    const r = config.redes || {};
+    const f = config.financiacion || {};
+    const ap = config.apariencia || {};
+
+    const set = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.value = val; };
+    set('cfg-nombre', e.nombre); set('cfg-slogan', e.slogan); set('cfg-telefono', e.telefono);
+    set('cfg-whatsapp', e.whatsapp); set('cfg-email', e.email); set('cfg-horario', e.horario);
+    set('cfg-direccion', e.direccion); set('cfg-maps', e.maps_embed);
+    set('cfg-instagram', r.instagram); set('cfg-facebook', r.facebook); set('cfg-tiktok', r.tiktok); set('cfg-youtube', r.youtube);
+    set('cfg-historia', config.historia);
+    set('cfg-hero-titulo', e.hero_titulo); set('cfg-hero-subtitulo', e.hero_subtitulo);
+    set('cfg-stats-anios', e.stats_anios); set('cfg-stats-clientes', e.stats_clientes);
+    const sec = config.secciones_home || {};
+    ['destacados','financiacion','tasacion','testimonios'].forEach(s => {
+      const el = document.getElementById('sec-' + s);
+      if (el) el.checked = sec[s] !== false;
+    });
+    set('cfg-tasa', f.tasa_interes);
+    const plazos = f.plazos || [];
+    document.querySelectorAll('.plazo-check').forEach(c => { c.checked = plazos.includes(parseInt(c.value)); });
+    // Opciones financiamiento
+    const opciones = f.opciones || [];
+    document.getElementById('opciones-fin').innerHTML = opciones.map((o, i) => `
+      <div class="form-section" style="margin-bottom:0">
+        <div class="form-grid-2">
+          <div class="form-group"><label>Título</label><input type="text" class="form-control fin-titulo" data-idx="${i}" value="${o.titulo || ''}"></div>
+        </div>
+        <div class="form-group"><label>Descripción</label><textarea class="form-control fin-desc" data-idx="${i}" rows="2">${o.descripcion || ''}</textarea></div>
+      </div>`).join('');
+    set('cfg-color', ap.color_primario || '#C9A060');
+    set('cfg-color-hex', ap.color_primario || '#C9A060');
+
+    // Testimonios
+    renderTestimonios();
+    // Equipo
+    renderEquipo();
+  }
+
+  function renderTestimonios() {
+    const testimonios = config.testimonios || [];
+    document.getElementById('testimonios-list').innerHTML = testimonios.map((t, i) => `
+      <div class="form-section" style="margin-bottom:0;position:relative">
+        <button style="position:absolute;top:12px;right:12px;color:var(--color-danger);background:none;border:none;cursor:pointer;font-size:18px" onclick="removeTestimonio(${i})">×</button>
+        <div class="form-grid-2">
+          <div class="form-group"><label>Nombre</label><input type="text" class="form-control test-nombre" data-idx="${i}" value="${t.nombre || ''}"></div>
+          <div class="form-group"><label>Cargo</label><input type="text" class="form-control test-cargo" data-idx="${i}" value="${t.cargo || ''}"></div>
+        </div>
+        <div class="form-group"><label>Texto</label><textarea class="form-control test-texto" data-idx="${i}" rows="2">${t.texto || ''}</textarea></div>
+        <div class="form-group"><label>Estrellas (1-5)</label><input type="number" class="form-control test-estrellas" data-idx="${i}" value="${t.estrellas || 5}" min="1" max="5" style="max-width:80px"></div>
+      </div>`).join('');
+  }
+
+  function addTestimonio() {
+    config.testimonios = [...(config.testimonios || []), { nombre: '', cargo: '', texto: '', estrellas: 5 }];
+    renderTestimonios();
+  }
+
+  function removeTestimonio(i) {
+    config.testimonios = [...(config.testimonios || [])];
+    config.testimonios.splice(i, 1);
+    renderTestimonios();
+  }
+
+  function renderEquipo() {
+    const equipo = config.equipo || [];
+    document.getElementById('equipo-list').innerHTML = equipo.map((m, i) => `
+      <div class="form-section" style="margin-bottom:0;position:relative">
+        <button style="position:absolute;top:12px;right:12px;color:var(--color-danger);background:none;border:none;cursor:pointer;font-size:18px" onclick="removeEquipo(${i})">×</button>
+        <div class="form-grid-2">
+          <div class="form-group"><label>Nombre</label><input type="text" class="form-control eq-nombre" data-idx="${i}" value="${m.nombre || ''}"></div>
+          <div class="form-group"><label>Cargo</label><input type="text" class="form-control eq-cargo" data-idx="${i}" value="${m.cargo || ''}"></div>
+        </div>
+      </div>`).join('');
+  }
+
+  function addEquipo() {
+    config.equipo = [...(config.equipo || []), { nombre: '', cargo: '', foto: '' }];
+    renderEquipo();
+  }
+
+  function removeEquipo(i) {
+    config.equipo = [...(config.equipo || [])];
+    config.equipo.splice(i, 1);
+    renderEquipo();
+  }
+
+  async function saveSection(section) {
+    let c = { ...config };
+    if (section === 'empresa') {
+      c.empresa = { ...(c.empresa || {}),
+        nombre: document.getElementById('cfg-nombre').value,
+        slogan: document.getElementById('cfg-slogan').value,
+        telefono: document.getElementById('cfg-telefono').value,
+        whatsapp: document.getElementById('cfg-whatsapp').value,
+        email: document.getElementById('cfg-email').value,
+        horario: document.getElementById('cfg-horario').value,
+        direccion: document.getElementById('cfg-direccion').value,
+        maps_embed: document.getElementById('cfg-maps').value,
+        stats_anios: parseInt(document.getElementById('cfg-stats-anios').value) || 0,
+        stats_clientes: parseInt(document.getElementById('cfg-stats-clientes').value) || 0,
+        hero_titulo: c.empresa?.hero_titulo,
+        hero_subtitulo: c.empresa?.hero_subtitulo,
+      };
+      c.redes = {
+        instagram: document.getElementById('cfg-instagram').value,
+        facebook: document.getElementById('cfg-facebook').value,
+        tiktok: document.getElementById('cfg-tiktok').value,
+        youtube: document.getElementById('cfg-youtube').value,
+      };
+      c.historia = document.getElementById('cfg-historia').value;
+    } else if (section === 'home') {
+      c.empresa = { ...(c.empresa || {}),
+        hero_titulo: document.getElementById('cfg-hero-titulo').value,
+        hero_subtitulo: document.getElementById('cfg-hero-subtitulo').value,
+        stats_anios: parseInt(document.getElementById('cfg-stats-anios').value) || 0,
+        stats_clientes: parseInt(document.getElementById('cfg-stats-clientes').value) || 0,
+      };
+      c.secciones_home = {
+        destacados: document.getElementById('sec-destacados').checked,
+        financiacion: document.getElementById('sec-financiacion').checked,
+        tasacion: document.getElementById('sec-tasacion').checked,
+        testimonios: document.getElementById('sec-testimonios').checked,
+      };
+    } else if (section === 'financiacion') {
+      const plazos = [...document.querySelectorAll('.plazo-check:checked')].map(c => parseInt(c.value));
+      const titulos = document.querySelectorAll('.fin-titulo');
+      const descs = document.querySelectorAll('.fin-desc');
+      const opciones = [...titulos].map((t, i) => ({ titulo: t.value, descripcion: descs[i]?.value || '' }));
+      c.financiacion = { ...(c.financiacion || {}), tasa_interes: parseFloat(document.getElementById('cfg-tasa').value) || 65, plazos, opciones };
+    } else if (section === 'testimonios') {
+      const nombres = document.querySelectorAll('.test-nombre');
+      const cargos = document.querySelectorAll('.test-cargo');
+      const textos = document.querySelectorAll('.test-texto');
+      const estrellas = document.querySelectorAll('.test-estrellas');
+      c.testimonios = [...nombres].map((n, i) => ({
+        nombre: n.value, cargo: cargos[i]?.value || '', texto: textos[i]?.value || '', estrellas: parseInt(estrellas[i]?.value) || 5
+      }));
+    } else if (section === 'equipo') {
+      const nombres = document.querySelectorAll('.eq-nombre');
+      const cargos = document.querySelectorAll('.eq-cargo');
+      c.equipo = [...nombres].map((n, i) => ({ nombre: n.value, cargo: cargos[i]?.value || '', foto: '' }));
+    } else if (section === 'apariencia') {
+      const color = document.getElementById('cfg-color-hex').value || document.getElementById('cfg-color').value;
+      c.apariencia = { ...(c.apariencia || {}), color_primario: color };
+    }
+    await Storage.set('config', c);
+    config = c;
+    showToast('Configuración guardada', 'success');
+  }
+
+  // Color sync
+  document.addEventListener('input', e => {
+    if (e.target.id === 'cfg-color') document.getElementById('cfg-color-hex').value = e.target.value;
+    if (e.target.id === 'cfg-color-hex') document.getElementById('cfg-color').value = e.target.value;
+  });
+
+  // Users
+  function renderUsers() {
+    const rolColor = { admin: 'var(--color-primary)', gerente: 'var(--color-info)', vendedor: 'var(--color-success)' };
+    document.getElementById('users-tbody').innerHTML = allUsers.map(u => `
+      <tr>
+        <td style="font-weight:600;color:var(--color-white)">${u.nombre}</td>
+        <td style="font-size:12px;color:var(--color-light-gray)">${u.email}</td>
+        <td><span style="background:rgba(255,255,255,0.06);padding:2px 10px;border-radius:100px;font-size:11px;font-weight:700;color:${rolColor[u.rol]||'var(--color-gray)'}">${u.rol}</span></td>
+        <td><span style="color:${u.activo?'var(--color-success)':'var(--color-danger)'};font-size:12px">${u.activo?'Activo':'Inactivo'}</span></td>
+        <td>
+          <div class="td-actions" style="justify-content:flex-end">
+            <button class="action-btn action-btn-edit" onclick="openUserModal('${u.id}')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+            ${u.id !== session.id ? `<button class="action-btn action-btn-delete" onclick="deleteUser('${u.id}')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+            </button>` : ''}
+          </div>
+        </td>
+      </tr>`).join('');
+  }
+
+  function openUserModal(id = null) {
+    document.getElementById('u-id').value = id || '';
+    document.getElementById('user-modal-title').textContent = id ? 'Editar usuario' : 'Nuevo usuario';
+    if (id) {
+      const u = allUsers.find(x => x.id === id);
+      document.getElementById('u-nombre').value = u.nombre;
+      document.getElementById('u-email').value = u.email;
+      document.getElementById('u-password').value = '';
+      document.getElementById('u-rol').value = u.rol;
+      document.getElementById('u-activo').checked = u.activo;
+    } else {
+      ['u-nombre','u-email','u-password'].forEach(f => document.getElementById(f).value = '');
+      document.getElementById('u-rol').value = 'vendedor';
+      document.getElementById('u-activo').checked = true;
+    }
+    document.getElementById('user-modal').classList.add('active');
+  }
+
+  async function saveUser() {
+    const nombre = document.getElementById('u-nombre').value.trim();
+    const email = document.getElementById('u-email').value.trim();
+    if (!nombre || !email) { showToast('Nombre y email son obligatorios', 'error'); return; }
+    const id = document.getElementById('u-id').value;
+    const password = document.getElementById('u-password').value;
+    const data = { nombre, email, rol: document.getElementById('u-rol').value, activo: document.getElementById('u-activo').checked };
+    if (password) data.password = password;
+    if (id) {
+      await Storage.update('usuarios', id, data);
+      showToast('Usuario actualizado', 'success');
+    } else {
+      if (!password) { showToast('La contraseña es obligatoria para nuevos usuarios', 'error'); return; }
+      data.id = Storage.generateId('u');
+      data.password = password;
+      await Storage.add('usuarios', data);
+      showToast('Usuario creado', 'success');
+    }
+    document.getElementById('user-modal').classList.remove('active');
+    allUsers = await Storage.get('usuarios');
+    renderUsers();
+  }
+
+  async function deleteUser(id) {
+    const u = allUsers.find(x => x.id === id);
+    confirmAction(`¿Eliminar al usuario "${u.nombre}"?`, async () => {
+      await Storage.delete('usuarios', id);
+      allUsers = await Storage.get('usuarios');
+      renderUsers();
+      showToast('Usuario eliminado', 'success');
+    });
+  }
+
+  loadConfig();
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — PEP Motors</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar scrolled">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo"><img src="assets/img/logo.png" alt="PEP Motors"></a>
+      <div class="navbar-links">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="financiacion.html">Financiación</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html" class="active">Contacto</a>
+      </div>
+      <div class="navbar-actions">
+        <a href="#" id="whatsapp-nav" class="btn btn-whatsapp btn-sm" target="_blank">WhatsApp</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Inicio</a><a href="catalogo.html">Catálogo</a><a href="financiacion.html">Financiación</a><a href="nosotros.html">Nosotros</a><a href="contacto.html">Contacto</a>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <p class="section-tag" style="justify-content:center;display:flex">Contacto</p>
+    <h1>Hablemos</h1>
+    <p style="color:var(--color-light-gray);font-size:17px;margin-top:8px">Estamos para ayudarte a encontrar tu auto ideal</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="two-col-grid" style="align-items:start;gap:48px">
+      <!-- Form -->
+      <div>
+        <h2 style="font-family:var(--font-title);font-size:22px;font-weight:700;margin-bottom:6px">Envianos un mensaje</h2>
+        <p style="color:var(--color-gray);margin-bottom:24px;font-size:14px">Respondemos en menos de 24 horas hábiles</p>
+
+        <div id="form-success" style="display:none;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:var(--radius);padding:20px;margin-bottom:20px;text-align:center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" width="36" height="36" style="margin:0 auto 10px"><polyline points="20 6 9 17 4 12"/></svg>
+          <p style="color:var(--color-success);font-weight:600">¡Mensaje enviado!</p>
+          <p style="color:var(--color-gray);font-size:13px;margin-top:4px">Te contactaremos a la brevedad.</p>
+        </div>
+
+        <form id="contact-form" onsubmit="submitContact(event)">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Nombre <span class="required">*</span></label>
+              <input type="text" class="form-control" id="c-nombre" required placeholder="Juan García">
+            </div>
+            <div class="form-group">
+              <label>Teléfono <span class="required">*</span></label>
+              <input type="tel" class="form-control" id="c-telefono" required placeholder="11 1234-5678">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" id="c-email" placeholder="tu@email.com">
+          </div>
+          <div class="form-group">
+            <label>Asunto</label>
+            <select class="form-control" id="c-asunto">
+              <option>Consulta por vehículo</option>
+              <option>Quiero vender mi auto</option>
+              <option>Información sobre financiación</option>
+              <option>Turno para test drive</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mensaje <span class="required">*</span></label>
+            <textarea class="form-control" id="c-mensaje" rows="5" required placeholder="Escribí tu consulta acá..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Enviar mensaje
+          </button>
+        </form>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <h2 style="font-family:var(--font-title);font-size:22px;font-weight:700;margin-bottom:20px">Información de contacto</h2>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:28px" id="contact-info"></div>
+
+        <!-- WhatsApp card -->
+        <div style="background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);border-radius:var(--radius-lg);padding:20px;margin-bottom:24px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <div style="width:40px;height:40px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;color:var(--color-white)">WhatsApp directo</p>
+              <p style="font-size:12px;color:var(--color-gray)">Respondemos al instante</p>
+            </div>
+          </div>
+          <a href="#" id="wa-direct" target="_blank" class="btn btn-whatsapp btn-block">Escribinos por WhatsApp</a>
+        </div>
+
+        <!-- Map -->
+        <div style="border-radius:var(--radius-lg);overflow:hidden;height:240px;border:1px solid var(--color-dark-3)">
+          <iframe id="maps-frame" width="100%" height="100%" frameborder="0" style="border:0;filter:grayscale(0.4) invert(0.9) contrast(0.8)" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="#" id="whatsapp-float" class="whatsapp-float" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div class="toast-container"></div>
+
+<script src="assets/js/storage.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  async function init() {
+    const config = await Storage.get('config');
+    const e = config.empresa || {};
+    const ap = config.apariencia || {};
+    if (ap.color_primario) document.documentElement.style.setProperty('--color-primary', ap.color_primario);
+    const wa = e.whatsapp || '';
+    if (wa) {
+      document.getElementById('whatsapp-nav').href = `https://wa.me/${wa}`;
+      document.getElementById('whatsapp-float').href = `https://wa.me/${wa}`;
+      document.getElementById('wa-direct').href = `https://wa.me/${wa}`;
+    }
+    if (e.maps_embed) document.getElementById('maps-frame').src = e.maps_embed;
+
+    const items = [
+      e.direccion && `<div style="display:flex;align-items:flex-start;gap:12px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" width="20" height="20" style="flex-shrink:0;margin-top:2px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><p style="font-size:13px;font-weight:600;color:var(--color-light-gray);margin-bottom:2px">Dirección</p><p style="font-size:15px;color:var(--color-white)">${e.direccion}</p></div></div>`,
+      e.telefono && `<div style="display:flex;align-items:flex-start;gap:12px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" width="20" height="20" style="flex-shrink:0;margin-top:2px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><div><p style="font-size:13px;font-weight:600;color:var(--color-light-gray);margin-bottom:2px">Teléfono</p><a href="tel:${e.telefono}" style="font-size:15px;color:var(--color-primary)">${e.telefono}</a></div></div>`,
+      e.email && `<div style="display:flex;align-items:flex-start;gap:12px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" width="20" height="20" style="flex-shrink:0;margin-top:2px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><p style="font-size:13px;font-weight:600;color:var(--color-light-gray);margin-bottom:2px">Email</p><a href="mailto:${e.email}" style="font-size:15px;color:var(--color-primary)">${e.email}</a></div></div>`,
+      e.horario && `<div style="display:flex;align-items:flex-start;gap:12px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" width="20" height="20" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><p style="font-size:13px;font-weight:600;color:var(--color-light-gray);margin-bottom:2px">Horario</p><p style="font-size:15px;color:var(--color-white)">${e.horario}</p></div></div>`,
+    ].filter(Boolean).join('');
+    document.getElementById('contact-info').innerHTML = items;
+  }
+
+  async function submitContact(ev) {
+    ev.preventDefault();
+    const nombre = document.getElementById('c-nombre').value.trim();
+    const telefono = document.getElementById('c-telefono').value.trim();
+    const mensaje = document.getElementById('c-mensaje').value.trim();
+    if (!nombre || !telefono || !mensaje) { showToast('Completá los campos obligatorios', 'error'); return; }
+
+    const lead = {
+      id: Storage.generateId('l'),
+      nombre,
+      telefono,
+      email: document.getElementById('c-email').value.trim(),
+      vehiculo_id: null,
+      vehiculo_texto: document.getElementById('c-asunto').value,
+      fuente: 'web',
+      estado: 'nuevo',
+      vendedor_id: null,
+      fecha_creacion: new Date().toISOString(),
+      ultima_actividad: new Date().toISOString(),
+      historial: [{ fecha: new Date().toISOString(), tipo: 'contacto_web', nota: `Asunto: ${document.getElementById('c-asunto').value}. Mensaje: ${mensaje}` }],
+      notas: mensaje,
+    };
+
+    await Storage.add('leads', lead);
+    document.getElementById('contact-form').reset();
+    document.getElementById('form-success').style.display = '';
+    document.getElementById('contact-form').style.display = 'none';
+  }
+
+  init();
+</script>
+</body>
+</html>

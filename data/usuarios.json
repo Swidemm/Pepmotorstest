@@ -1,0 +1,34 @@
+[
+  {
+    "id": "u001",
+    "nombre": "Admin PEP",
+    "email": "admin@pepmotors.com",
+    "password": "admin1234",
+    "rol": "admin",
+    "activo": true
+  },
+  {
+    "id": "u002",
+    "nombre": "Valentina Cruz",
+    "email": "vcruz@pepmotors.com",
+    "password": "valen123",
+    "rol": "vendedor",
+    "activo": true
+  },
+  {
+    "id": "u003",
+    "nombre": "Marcos Herrera",
+    "email": "mherrera@pepmotors.com",
+    "password": "marcos123",
+    "rol": "vendedor",
+    "activo": true
+  },
+  {
+    "id": "u004",
+    "nombre": "Laura Paz",
+    "email": "lpaz@pepmotors.com",
+    "password": "laura123",
+    "rol": "gerente",
+    "activo": true
+  }
+]

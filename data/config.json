@@ -1,0 +1,107 @@
+{
+  "empresa": {
+    "nombre": "PEP Motors",
+    "slogan": "Tu próximo auto, a un click.",
+    "hero_titulo": "Encontrá tu auto ideal",
+    "hero_subtitulo": "El mayor stock de vehículos 0km y usados de la zona, con la mejor financiación.",
+    "direccion": "Av. San Martín 1450, Ramos Mejía, Buenos Aires",
+    "telefono": "+54 11 4654-2200",
+    "whatsapp": "5491146542200",
+    "email": "info@pepmotors.com.ar",
+    "horario": "Lun–Vie 9:00 a 18:00 | Sáb 9:00 a 13:00",
+    "maps_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d-58.562!3d-34.641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDM4JzI3LjYiUyA1OMKwMzMnNDMuMiJX!5e0!3m2!1ses!2sar!4v1600000000000",
+    "stats_anios": 12,
+    "stats_clientes": 850
+  },
+  "redes": {
+    "instagram": "https://instagram.com/pepmotors",
+    "facebook": "https://facebook.com/pepmotors",
+    "tiktok": "",
+    "youtube": ""
+  },
+  "apariencia": {
+    "color_primario": "#C9A060",
+    "logo_url": "assets/img/logo.png"
+  },
+  "financiacion": {
+    "tasa_interes": 65,
+    "plazos": [12, 24, 36, 48, 60],
+    "opciones": [
+      {
+        "titulo": "Crédito Prendario",
+        "icono": "landmark",
+        "descripcion": "Financiá hasta el 70% del valor del vehículo a través de los principales bancos del país. Requisitos mínimos y respuesta en 48hs."
+      },
+      {
+        "titulo": "Plan de Ahorro",
+        "icono": "piggy-bank",
+        "descripcion": "Accedé a tu 0km desde cuotas accesibles. Adjudicación mensual por licitación o lote. Ideal para planificar tu próximo auto."
+      },
+      {
+        "titulo": "Leasing",
+        "icono": "file-text",
+        "descripcion": "Solución ideal para empresas y monotributistas. Deducís el IVA, optimizás costos y al final del contrato adquirís el vehículo."
+      },
+      {
+        "titulo": "Contado con Descuento",
+        "icono": "tag",
+        "descripcion": "Pagando al contado obtenés hasta un 5% de descuento adicional sobre el precio de lista. Consultanos por la mejor oferta."
+      }
+    ]
+  },
+  "testimonios": [
+    {
+      "nombre": "María López",
+      "cargo": "Diseñadora",
+      "texto": "Excelente atención desde el primer día. Me ayudaron a encontrar el auto perfecto dentro de mi presupuesto. 100% recomendable.",
+      "estrellas": 5
+    },
+    {
+      "nombre": "Carlos Rodríguez",
+      "cargo": "Empresario",
+      "texto": "Compré mi Ranger acá y el proceso fue rápido y transparente. Los precios son los mejores de la zona. Volveré sin dudas.",
+      "estrellas": 5
+    },
+    {
+      "nombre": "Ana Martínez",
+      "cargo": "Profesora",
+      "texto": "Primera vez comprando un auto y me guiaron en todo. La financiación fue sencilla y sin sorpresas. Muy satisfecha con mi Corolla.",
+      "estrellas": 5
+    },
+    {
+      "nombre": "Sebastián Torres",
+      "cargo": "Ingeniero",
+      "texto": "Vendí mi auto usado y compré uno 0km. La permuta fue justa y el trámite muy ágil. Recomiendo PEP Motors sin dudarlo.",
+      "estrellas": 5
+    }
+  ],
+  "equipo": [
+    {
+      "nombre": "Pedro Espósito",
+      "cargo": "Gerente General",
+      "foto": ""
+    },
+    {
+      "nombre": "Valentina Cruz",
+      "cargo": "Asesora Comercial",
+      "foto": ""
+    },
+    {
+      "nombre": "Marcos Herrera",
+      "cargo": "Asesor Comercial",
+      "foto": ""
+    },
+    {
+      "nombre": "Laura Paz",
+      "cargo": "Administración y Postventa",
+      "foto": ""
+    }
+  ],
+  "secciones_home": {
+    "destacados": true,
+    "financiacion": true,
+    "tasacion": true,
+    "testimonios": true
+  },
+  "historia": "PEP Motors nació en 2012 con una sola premisa: hacer que comprar un auto sea una experiencia simple, honesta y memorable. En más de 12 años, ayudamos a más de 850 familias y empresas a encontrar su vehículo ideal. Hoy somos un referente del mercado automotor en la zona oeste del Gran Buenos Aires, con un equipo comprometido con la excelencia y la transparencia en cada operación."
+}

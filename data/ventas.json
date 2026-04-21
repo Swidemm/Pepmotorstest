@@ -1,0 +1,16 @@
+[
+  {
+    "id": "vta001",
+    "vehiculo_id": "v005",
+    "vehiculo_texto": "Chevrolet Tracker Premier 1.2T 2023",
+    "cliente_id": "c002",
+    "cliente_nombre": "Luciana Pérez",
+    "fecha_venta": "2025-04-02",
+    "precio_lista": 26800000,
+    "precio_final": 26000000,
+    "forma_pago": "financiado",
+    "vendedor_id": "u003",
+    "vendedor_nombre": "Marcos Herrera",
+    "observaciones": "Financiación a 36 cuotas por Banco Nación. Entrega en concesionario."
+  }
+]

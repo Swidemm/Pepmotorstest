@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda — PEP Motors Admin</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout" id="admin-layout">
+  <div id="sidebar-container"></div>
+  <main class="admin-main">
+    <div id="topbar-container"></div>
+    <div class="admin-content">
+
+      <div class="page-header-admin flex justify-between items-center mb-6">
+        <div>
+          <h1 class="page-title">Agenda</h1>
+          <p class="page-subtitle" id="agenda-info">Cargando...</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-primary" onclick="openEventModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nuevo evento
+          </button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start">
+        <!-- Calendar -->
+        <div>
+          <div class="chart-card" style="margin-bottom:16px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+              <button class="btn btn-secondary btn-sm" onclick="changeMonth(-1)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <h3 style="font-size:16px;font-weight:700" id="cal-title"></h3>
+              <button class="btn btn-secondary btn-sm" onclick="changeMonth(1)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+          </div>
+        </div>
+
+        <!-- Sidebar: today + upcoming -->
+        <div>
+          <div class="chart-card" style="margin-bottom:12px">
+            <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Hoy</h3>
+            <div id="today-events" style="display:flex;flex-direction:column;gap:8px"></div>
+          </div>
+          <div class="chart-card">
+            <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">Próximos 7 días</h3>
+            <div id="upcoming-events" style="display:flex;flex-direction:column;gap:8px"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Event modal -->
+<div class="modal-overlay" id="event-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="event-modal-title">Nuevo evento</h2>
+      <button class="modal-close" onclick="document.getElementById('event-modal').classList.remove('active')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="ev-id">
+      <div class="form-group">
+        <label>Tipo</label>
+        <select class="form-control" id="ev-tipo">
+          <option value="test_drive">Test drive</option>
+          <option value="seguimiento">Seguimiento de lead</option>
+          <option value="tarea">Tarea general</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Título *</label>
+        <input type="text" class="form-control" id="ev-titulo" required>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Fecha *</label>
+          <input type="date" class="form-control" id="ev-fecha" required>
+        </div>
+        <div class="form-group">
+          <label>Hora</label>
+          <input type="time" class="form-control" id="ev-hora">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Cliente</label>
+        <input type="text" class="form-control" id="ev-cliente" placeholder="Nombre del cliente">
+      </div>
+      <div class="form-group">
+        <label>Notas</label>
+        <textarea class="form-control" id="ev-notas" rows="2"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="document.getElementById('event-modal').classList.remove('active')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveEvent()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/admin/auth.js"></script>
+<script src="../assets/js/admin/sidebar.js"></script>
+<script>
+  const session = Auth.require();
+  document.getElementById('sidebar-container').innerHTML = renderSidebar('agenda');
+  document.getElementById('topbar-container').innerHTML = renderTopbar('Agenda', '');
+  initSidebar();
+
+  let allEvents = [];
+  let currentDate = new Date();
+
+  const typeClass = { test_drive: 'event-test-drive', seguimiento: 'event-seguimiento', tarea: 'event-tarea' };
+  const typeLabel = { test_drive: 'Test Drive', seguimiento: 'Seguimiento', tarea: 'Tarea' };
+
+  const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const DAYS = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+
+  async function loadAgenda() {
+    allEvents = await Storage.get('agenda');
+    renderCalendar();
+    renderSideEvents();
+    const pending = allEvents.filter(e => !e.completado).length;
+    document.getElementById('agenda-info').textContent = `${allEvents.length} eventos — ${pending} pendientes`;
+  }
+
+  function changeMonth(dir) {
+    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + dir, 1);
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    document.getElementById('cal-title').textContent = `${MONTHS[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date().toISOString().slice(0, 10);
+
+    let html = DAYS.map(d => `<div class="calendar-day-header">${d}</div>`).join('');
+
+    for (let i = 0; i < firstDay; i++) {
+      const prevDays = new Date(year, month, 0).getDate() - firstDay + i + 1;
+      html += `<div class="calendar-day other-month"><div class="day-number">${prevDays}</div></div>`;
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isToday = dateStr === today;
+      const dayEvents = allEvents.filter(e => e.fecha === dateStr);
+      const eventsHtml = dayEvents.slice(0, 3).map(e =>
+        `<div class="day-event ${typeClass[e.tipo]}" title="${e.titulo}">${e.hora ? e.hora + ' ' : ''}${e.titulo}</div>`
+      ).join('');
+      html += `<div class="calendar-day ${isToday ? 'today' : ''}" onclick="openEventModal(null,'${dateStr}')">
+        <div class="day-number">${d}</div>
+        ${eventsHtml}
+        ${dayEvents.length > 3 ? `<div style="font-size:10px;color:var(--color-gray)">+${dayEvents.length-3} más</div>` : ''}
+      </div>`;
+    }
+
+    // fill remainder
+    const total = firstDay + daysInMonth;
+    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let d = 1; d <= remaining; d++) {
+      html += `<div class="calendar-day other-month"><div class="day-number">${d}</div></div>`;
+    }
+
+    document.getElementById('calendar-grid').innerHTML = html;
+  }
+
+  function renderSideEvents() {
+    const today = new Date().toISOString().slice(0, 10);
+    const todayEvs = allEvents.filter(e => e.fecha === today && !e.completado);
+    const upcoming = allEvents.filter(e => e.fecha > today && !e.completado)
+      .sort((a,b) => a.fecha.localeCompare(b.fecha) || (a.hora||'').localeCompare(b.hora||'')).slice(0, 5);
+
+    const renderEvent = (e) => `
+      <div style="background:var(--color-dark-3);border-radius:8px;padding:10px 12px;border-left:3px solid ${e.tipo==='test_drive'?'var(--color-info)':e.tipo==='seguimiento'?'var(--color-warning)':'var(--color-primary)'}">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <span style="font-size:10px;font-weight:700;text-transform:uppercase;color:${e.tipo==='test_drive'?'var(--color-info)':e.tipo==='seguimiento'?'var(--color-warning)':'var(--color-primary)'}">${typeLabel[e.tipo]}</span>
+          <div style="display:flex;gap:4px">
+            ${e.hora ? `<span style="font-size:10px;color:var(--color-gray)">${e.hora}</span>` : ''}
+            <button style="color:var(--color-success);background:none;border:none;cursor:pointer" onclick="completeEvent('${e.id}')" title="Marcar completo">✓</button>
+            <button style="color:var(--color-danger);background:none;border:none;cursor:pointer" onclick="deleteEvent('${e.id}')" title="Eliminar">×</button>
+          </div>
+        </div>
+        <p style="font-size:13px;font-weight:600;color:var(--color-white)">${e.titulo}</p>
+        ${e.fecha !== today ? `<p style="font-size:11px;color:var(--color-gray)">${e.fecha}</p>` : ''}
+      </div>`;
+
+    document.getElementById('today-events').innerHTML = todayEvs.length
+      ? todayEvs.map(renderEvent).join('')
+      : '<p style="font-size:13px;color:var(--color-gray)">Sin eventos hoy</p>';
+
+    document.getElementById('upcoming-events').innerHTML = upcoming.length
+      ? upcoming.map(renderEvent).join('')
+      : '<p style="font-size:13px;color:var(--color-gray)">Sin próximos eventos</p>';
+  }
+
+  function openEventModal(id = null, fecha = null) {
+    document.getElementById('ev-id').value = id || '';
+    document.getElementById('event-modal-title').textContent = id ? 'Editar evento' : 'Nuevo evento';
+    if (id) {
+      const e = allEvents.find(x => x.id === id);
+      if (!e) return;
+      document.getElementById('ev-tipo').value = e.tipo;
+      document.getElementById('ev-titulo').value = e.titulo;
+      document.getElementById('ev-fecha').value = e.fecha;
+      document.getElementById('ev-hora').value = e.hora || '';
+      document.getElementById('ev-cliente').value = e.cliente_nombre || '';
+      document.getElementById('ev-notas').value = e.notas || '';
+    } else {
+      document.getElementById('ev-tipo').value = 'test_drive';
+      document.getElementById('ev-titulo').value = '';
+      document.getElementById('ev-fecha').value = fecha || new Date().toISOString().slice(0, 10);
+      document.getElementById('ev-hora').value = '';
+      document.getElementById('ev-cliente').value = '';
+      document.getElementById('ev-notas').value = '';
+    }
+    document.getElementById('event-modal').classList.add('active');
+  }
+
+  async function saveEvent() {
+    const titulo = document.getElementById('ev-titulo').value.trim();
+    const fecha = document.getElementById('ev-fecha').value;
+    if (!titulo || !fecha) { showToast('Título y fecha son obligatorios', 'error'); return; }
+    const data = {
+      tipo: document.getElementById('ev-tipo').value,
+      titulo,
+      fecha,
+      hora: document.getElementById('ev-hora').value,
+      cliente_nombre: document.getElementById('ev-cliente').value.trim() || null,
+      notas: document.getElementById('ev-notas').value.trim(),
+      completado: false,
+      vendedor_id: session.id,
+    };
+    const id = document.getElementById('ev-id').value;
+    if (id) {
+      await Storage.update('agenda', id, data);
+      showToast('Evento actualizado', 'success');
+    } else {
+      data.id = Storage.generateId('a');
+      await Storage.add('agenda', data);
+      showToast('Evento creado', 'success');
+    }
+    document.getElementById('event-modal').classList.remove('active');
+    allEvents = await Storage.get('agenda');
+    renderCalendar();
+    renderSideEvents();
+  }
+
+  async function completeEvent(id) {
+    await Storage.update('agenda', id, { completado: true });
+    allEvents = await Storage.get('agenda');
+    renderCalendar();
+    renderSideEvents();
+    showToast('Evento completado', 'success', 2000);
+  }
+
+  async function deleteEvent(id) {
+    await Storage.delete('agenda', id);
+    allEvents = await Storage.get('agenda');
+    renderCalendar();
+    renderSideEvents();
+    showToast('Evento eliminado', 'success', 2000);
+  }
+
+  loadAgenda();
+</script>
+</body>
+</html>

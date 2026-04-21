@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — PEP Motors Admin</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="admin-layout" id="admin-layout">
+  <div id="sidebar-container"></div>
+  <main class="admin-main">
+    <div id="topbar-container"></div>
+    <div class="admin-content">
+
+      <!-- Page Header -->
+      <div class="page-header-admin flex justify-between items-center mb-6">
+        <div>
+          <h1 class="page-title">Dashboard</h1>
+          <p class="page-subtitle" id="greeting">Buen día</p>
+        </div>
+        <div class="page-actions">
+          <a href="vehiculos.html" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Agregar vehículo
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid-admin">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Vehículos disponibles</span>
+            <div class="stat-card-icon red">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+          </div>
+          <p class="stat-card-value" id="stat-vehiculos">—</p>
+          <p class="stat-card-change up">Stock actual</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Leads nuevos hoy</span>
+            <div class="stat-card-icon blue">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+          </div>
+          <p class="stat-card-value" id="stat-leads-hoy">—</p>
+          <p class="stat-card-change up">Sin contactar</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Ventas este mes</span>
+            <div class="stat-card-icon green">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+          </div>
+          <p class="stat-card-value" id="stat-ventas">—</p>
+          <p class="stat-card-change up">Este mes</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Test drives pendientes</span>
+            <div class="stat-card-icon yellow">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+          </div>
+          <p class="stat-card-value" id="stat-testdrives">—</p>
+          <p class="stat-card-change">Próximos</p>
+        </div>
+      </div>
+
+      <!-- Charts + Recent -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px">
+        <!-- Chart leads -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3 class="chart-card-title">Leads últimos 7 días</h3>
+          </div>
+          <div class="chart-wrapper" style="height:220px">
+            <canvas id="chart-leads"></canvas>
+          </div>
+        </div>
+
+        <!-- Quick access -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3 class="chart-card-title">Accesos rápidos</h3>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; padding-top:4px">
+            <a href="vehiculos.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              Vehículos
+            </a>
+            <a href="leads.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              Leads
+            </a>
+            <a href="agenda.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Agenda
+            </a>
+            <a href="ventas.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              Ventas
+            </a>
+            <a href="clientes.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Clientes
+            </a>
+            <a href="configuracion.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              Config
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent activity -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px">
+        <!-- Recent leads -->
+        <div class="table-container">
+          <div class="table-header">
+            <h3 style="font-size:15px; font-weight:700">Últimos leads</h3>
+            <a href="leads.html" class="btn btn-outline btn-sm">Ver todos</a>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Vehículo</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="recent-leads">
+              <tr><td colspan="4"><div class="skeleton" style="height:14px; margin:4px 0"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Recent sales -->
+        <div class="table-container">
+          <div class="table-header">
+            <h3 style="font-size:15px; font-weight:700">Últimas ventas</h3>
+            <a href="ventas.html" class="btn btn-outline btn-sm">Ver todas</a>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Vehículo</th>
+                <th>Precio final</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="recent-ventas">
+              <tr><td colspan="4"><div class="skeleton" style="height:14px; margin:4px 0"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast-container"></div>
+
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/admin/auth.js"></script>
+<script src="../assets/js/admin/sidebar.js"></script>
+<script>
+  const session = Auth.require();
+  document.getElementById('sidebar-container').innerHTML = renderSidebar('dashboard');
+  document.getElementById('topbar-container').innerHTML = renderTopbar('Dashboard', '');
+  initSidebar();
+
+  const hour = new Date().getHours();
+  const greet = hour < 12 ? 'Buenos días' : hour < 18 ? 'Buenas tardes' : 'Buenas noches';
+  document.getElementById('greeting').textContent = `${greet}, ${session.nombre} 👋`;
+
+  const statusMap = { nuevo: 'badge-nuevo', contactado: 'badge-contactado', negociacion: 'badge-negociacion', cerrado: 'badge-cerrado', perdido: 'badge-perdido' };
+
+  async function loadDashboard() {
+    const [vehiculos, leads, ventas, agenda] = await Promise.all([
+      Storage.get('vehiculos'), Storage.get('leads'), Storage.get('ventas'), Storage.get('agenda')
+    ]);
+
+    const disponibles = vehiculos.filter(v => v.estado === 'disponible').length;
+    const today = new Date().toISOString().slice(0, 10);
+    const leadsHoy = leads.filter(l => l.fecha_creacion && l.fecha_creacion.slice(0, 10) === today).length;
+    const mesActual = new Date().toISOString().slice(0, 7);
+    const ventasMes = ventas.filter(v => v.fecha_venta && v.fecha_venta.slice(0, 7) === mesActual).length;
+    const testDrives = agenda.filter(a => a.tipo === 'test_drive' && !a.completado).length;
+
+    document.getElementById('stat-vehiculos').textContent = disponibles;
+    document.getElementById('stat-leads-hoy').textContent = leadsHoy;
+    document.getElementById('stat-ventas').textContent = ventasMes;
+    document.getElementById('stat-testdrives').textContent = testDrives;
+
+    const leadsNewCount = leads.filter(l => l.estado === 'nuevo').length;
+    const badge = document.getElementById('leads-badge');
+    if (badge) { badge.textContent = leadsNewCount; badge.style.display = leadsNewCount ? '' : 'none'; }
+
+    // Recent leads
+    const recentLeads = [...leads].sort((a,b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion)).slice(0, 5);
+    document.getElementById('recent-leads').innerHTML = recentLeads.length
+      ? recentLeads.map(l => `<tr>
+          <td style="font-weight:600;color:var(--color-white)">${l.nombre}</td>
+          <td>${l.vehiculo_texto || '—'}</td>
+          <td><span class="status-badge ${statusMap[l.estado] || ''}">${l.estado}</span></td>
+          <td>${l.fecha_creacion ? l.fecha_creacion.slice(0,10) : '—'}</td>
+        </tr>`).join('')
+      : '<tr><td colspan="4" class="text-muted" style="padding:20px;text-align:center">Sin leads aún</td></tr>';
+
+    // Recent ventas
+    const recentVentas = [...ventas].sort((a,b) => new Date(b.fecha_venta) - new Date(a.fecha_venta)).slice(0, 5);
+    document.getElementById('recent-ventas').innerHTML = recentVentas.length
+      ? recentVentas.map(v => `<tr>
+          <td style="font-weight:600;color:var(--color-white)">${v.cliente_nombre}</td>
+          <td>${v.vehiculo_texto}</td>
+          <td style="color:var(--color-success)">${formatPrice(v.precio_final)}</td>
+          <td>${v.fecha_venta || '—'}</td>
+        </tr>`).join('')
+      : '<tr><td colspan="4" class="text-muted" style="padding:20px;text-align:center">Sin ventas aún</td></tr>';
+
+    // Chart
+    const last7 = [];
+    const labels = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(); d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().slice(0, 10);
+      labels.push(d.toLocaleDateString('es-AR', { weekday: 'short', day: 'numeric' }));
+      last7.push(leads.filter(l => l.fecha_creacion && l.fecha_creacion.slice(0, 10) === dateStr).length);
+    }
+
+    new Chart(document.getElementById('chart-leads'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Leads',
+          data: last7,
+          backgroundColor: 'rgba(201,160,96,0.7)',
+          borderColor: '#C9A060',
+          borderWidth: 1,
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, ticks: { color: '#6B6B6B', stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.05)' } },
+          x: { ticks: { color: '#6B6B6B' }, grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  loadDashboard();
+</script>
+</body>
+</html>

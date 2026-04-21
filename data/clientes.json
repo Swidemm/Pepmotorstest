@@ -1,0 +1,41 @@
+[
+  {
+    "id": "c001",
+    "nombre": "Carlos",
+    "apellido": "García",
+    "dni": "30123456",
+    "email": "carlos.garcia@gmail.com",
+    "telefono": "1155556666",
+    "direccion": "Av. Rivadavia 2345, Ramos Mejía",
+    "fecha_creacion": "2025-04-10",
+    "leads_ids": ["l001"],
+    "ventas_ids": [],
+    "notas": "Cliente interesado en financiación. Tiene presupuesto para Toyota Corolla."
+  },
+  {
+    "id": "c002",
+    "nombre": "Luciana",
+    "apellido": "Pérez",
+    "dni": "35678901",
+    "email": "luci.perez@yahoo.com",
+    "telefono": "1199990000",
+    "direccion": "Lavalle 890, Haedo",
+    "fecha_creacion": "2025-03-20",
+    "leads_ids": ["l004"],
+    "ventas_ids": ["vta001"],
+    "notas": "Clienta referida por Carlos García. Muy satisfecha con la compra."
+  },
+  {
+    "id": "c003",
+    "nombre": "Roberto",
+    "apellido": "Sánchez",
+    "dni": "28456789",
+    "email": "rsanchez@empresa.com.ar",
+    "telefono": "1144445555",
+    "direccion": "Calle Industrial 567, Ramos Mejía",
+    "fecha_creacion": "2025-04-05",
+    "leads_ids": ["l003"],
+    "ventas_ids": [],
+    "notas": "Empresa de construcción. Potencial cliente corporativo."
+  }
+]
