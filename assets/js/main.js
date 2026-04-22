@@ -110,7 +110,7 @@ window.buildVehicleCard = function(v) {
       <div class="vc-body">
         <div class="vc-brand">${v.marca}</div>
         <div class="vc-name">${v.modelo}</div>
-        <div class="vc-version">${v.version}</div>
+        <div class="vc-version">${v.version || ''}</div>
         <div class="vc-specs">
           <span class="vc-spec">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>

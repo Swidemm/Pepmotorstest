@@ -335,6 +335,7 @@
   let editingId = null;
 
   const statusMap = { disponible: 'badge-disponible', reservado: 'badge-reservado', vendido: 'badge-vendido', revision: 'badge-revision' };
+  const statusLabel = { disponible: 'Disponible', reservado: 'Reservado', vendido: 'Vendido', revision: 'En revisión' };
 
   async function loadVehicles() {
     allVehicles = await Storage.get('vehiculos');
@@ -365,7 +366,7 @@
               </div>
               <div>
                 <p style="font-weight:600;color:var(--color-white);font-size:13px">${v.marca} ${v.modelo}</p>
-                <p style="font-size:11px;color:var(--color-gray)">${v.version} · <span style="color:${v.condicion==='0km'?'var(--color-primary)':'var(--color-light-gray)'}">${v.condicion.toUpperCase()}</span></p>
+                <p style="font-size:11px;color:var(--color-gray)">${v.version ? v.version + ' · ' : ''}<span style="color:${v.condicion==='0km'?'var(--color-primary)':'var(--color-light-gray)'}">${v.condicion.toUpperCase()}</span></p>
               </div>
             </div>
           </td>
@@ -374,7 +375,7 @@
           <td style="font-weight:600;color:var(--color-white)">${formatPrice(v.precio)}</td>
           <td>
             ${isVendedor
-              ? `<span class="status-badge ${statusMap[v.estado]}">${v.estado}</span>`
+              ? `<span class="status-badge ${statusMap[v.estado]}">${statusLabel[v.estado] || v.estado}</span>`
               : `<select class="form-control" style="padding:4px 8px;font-size:12px;width:auto" onchange="quickStatus('${v.id}', this.value)">
                   <option value="disponible" ${v.estado==='disponible'?'selected':''}>Disponible</option>
                   <option value="reservado" ${v.estado==='reservado'?'selected':''}>Reservado</option>

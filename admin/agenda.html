@@ -282,6 +282,8 @@
     const titulo = document.getElementById('ev-titulo').value.trim();
     const fecha = document.getElementById('ev-fecha').value;
     if (!titulo || !fecha) { showToast('Título y fecha son obligatorios', 'error'); return; }
+    const id = document.getElementById('ev-id').value;
+    const existingEvent = id ? allEvents.find(e => e.id === id) : null;
     const data = {
       tipo: document.getElementById('ev-tipo').value,
       titulo,
@@ -289,10 +291,9 @@
       hora: document.getElementById('ev-hora').value,
       cliente_nombre: document.getElementById('ev-cliente').value.trim() || null,
       notas: document.getElementById('ev-notas').value.trim(),
-      completado: false,
+      completado: existingEvent ? existingEvent.completado : false,
       vendedor_id: session.id,
     };
-    const id = document.getElementById('ev-id').value;
     if (id) {
       await Storage.update('agenda', id, data);
       showToast('Evento actualizado', 'success');

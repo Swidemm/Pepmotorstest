@@ -21,7 +21,7 @@
           <p class="page-subtitle" id="greeting">Buen día</p>
         </div>
         <div class="page-actions">
-          <a href="vehiculos.html" class="btn btn-primary">
+          <a href="vehiculos.html" class="btn btn-primary" id="btn-add-vehicle">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             Agregar vehículo
           </a>
@@ -202,6 +202,7 @@
   const session = Auth.require();
   document.getElementById('sidebar-container').innerHTML = renderSidebar('dashboard');
   document.getElementById('topbar-container').innerHTML = renderTopbar('Dashboard', '');
+  if (session.rol === 'vendedor') document.getElementById('btn-add-vehicle').style.display = 'none';
   initSidebar();
 
   const hour = new Date().getHours();

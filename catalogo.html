@@ -203,7 +203,7 @@
       document.getElementById('f-precio').value = params.get('precio_max');
       updatePriceLabel();
     }
-    if (params.get('condicion')) buildModeloSelect();
+    if (params.get('condicion') || params.get('marca')) buildModeloSelect();
 
     document.getElementById('total-count').textContent = allVehicles.length;
     applyFilters();
