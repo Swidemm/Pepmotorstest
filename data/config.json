@@ -4,13 +4,13 @@
     "slogan": "Tu próximo auto, a un click.",
     "hero_titulo": "Encontrá tu auto ideal",
     "hero_subtitulo": "El mayor stock de vehículos 0km y usados de la zona, con la mejor financiación.",
-    "direccion": "Av. San Martín 1450, Ramos Mejía, Buenos Aires",
+    "direccion": "Av. América 386 – Sáenz Peña, Buenos Aires",
     "telefono": "+54 11 4654-2200",
     "whatsapp": "5491146542200",
     "email": "info@pepmotors.com.ar",
     "horario": "Lun–Vie 9:00 a 18:00 | Sáb 9:00 a 13:00",
     "maps_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d-58.562!3d-34.641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDM4JzI3LjYiUyA1OMKwMzMnNDMuMiJX!5e0!3m2!1ses!2sar!4v1600000000000",
-    "stats_anios": 12,
+    "stats_anios": 15,
     "stats_clientes": 850
   },
   "redes": {
@@ -85,7 +85,7 @@
       "nombre": "Vendedor Demo",
       "cargo": "Asesor Comercial",
       "foto": ""
-    },
+    }
   ],
   "secciones_home": {
     "destacados": true,
@@ -93,5 +93,5 @@
     "tasacion": true,
     "testimonios": true
   },
-  "historia": "PEP Motors nació en 2012 con una sola premisa: hacer que comprar un auto sea una experiencia simple, honesta y memorable. En más de 12 años, ayudamos a más de 850 familias y empresas a encontrar su vehículo ideal. Hoy somos un referente del mercado automotor en la zona oeste del Gran Buenos Aires, con un equipo comprometido con la excelencia y la transparencia en cada operación."
+  "historia": "PEP Motors nació en 2009 en Sáenz Peña con una sola premisa: hacer que comprar un auto sea una experiencia simple, honesta y memorable. En más de 15 años, ayudamos a cientos de familias y empresas a encontrar su vehículo ideal. Hoy somos un referente del mercado automotor de la zona, con un equipo comprometido con la excelencia y la transparencia en cada operación."
 }

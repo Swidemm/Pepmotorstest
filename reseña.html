@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dejá tu reseña — PEP Motors</title>
+  <meta name="description" content="¿Compraste con nosotros? Compartí tu experiencia.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .resena-page {
+      min-height: 100vh;
+      background: var(--color-dark, #0A0A0A);
+      display: flex;
+      flex-direction: column;
+    }
+    .resena-hero {
+      background: var(--surface, #1A1A1A);
+      border-bottom: 1px solid var(--border, #2E2E2E);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .resena-hero img { height: 44px; filter: invert(1); margin-bottom: 20px; }
+    .resena-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 800; color: var(--fg, #F5F5F5); margin-bottom: 8px; }
+    .resena-hero p { color: var(--fg-secondary, #B0B0B0); font-size: 15px; }
+    .resena-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+    .resena-card {
+      background: var(--card, #1A1A1A);
+      border: 1px solid var(--border, #2E2E2E);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 560px;
+    }
+    .star-picker { display: flex; gap: 8px; justify-content: center; margin-bottom: 28px; }
+    .star-picker span {
+      font-size: 40px;
+      cursor: pointer;
+      color: var(--border, #2E2E2E);
+      transition: color 0.15s, transform 0.15s;
+      line-height: 1;
+      user-select: none;
+    }
+    .star-picker span.lit { color: var(--gold, #C9A060); }
+    .star-picker span:hover { transform: scale(1.15); }
+    .resena-form .form-group { margin-bottom: 18px; }
+    .resena-form label { display: block; font-size: 13px; font-weight: 600; color: var(--fg-secondary, #B0B0B0); margin-bottom: 6px; }
+    .resena-form input,
+    .resena-form textarea {
+      width: 100%; box-sizing: border-box;
+      background: var(--surface, #1A1A1A);
+      border: 1px solid var(--border, #2E2E2E);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--fg, #F5F5F5);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .resena-form input:focus,
+    .resena-form textarea:focus { border-color: var(--gold, #C9A060); }
+    .resena-form textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    .resena-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold, #C9A060);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .resena-submit:hover { opacity: 0.88; }
+    .resena-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+    .resena-thanks {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .resena-thanks .thanks-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+    }
+    .resena-thanks h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--fg, #F5F5F5);
+      margin-bottom: 10px;
+    }
+    .resena-thanks p { color: var(--fg-secondary, #B0B0B0); font-size: 15px; line-height: 1.6; }
+    .resena-thanks a { color: var(--gold, #C9A060); text-decoration: none; font-weight: 600; }
+    .stars-label { text-align: center; font-size: 13px; color: var(--fg-tertiary, #6B6B6B); margin-bottom: 8px; }
+  </style>
+</head>
+<body class="resena-page">
+
+<div class="resena-hero">
+  <img src="assets/img/logo.png" alt="PEP Motors" id="logo-img">
+  <h1>Dejá tu reseña</h1>
+  <p>Tu opinión nos ayuda a seguir mejorando y a otros clientes a elegir mejor.</p>
+</div>
+
+<div class="resena-content">
+  <div class="resena-card">
+
+    <!-- Form -->
+    <div id="form-section">
+      <p class="stars-label">¿Cómo fue tu experiencia?</p>
+      <div class="star-picker" id="star-picker">
+        <span data-val="1">★</span>
+        <span data-val="2">★</span>
+        <span data-val="3">★</span>
+        <span data-val="4">★</span>
+        <span data-val="5">★</span>
+      </div>
+
+      <form class="resena-form" id="resena-form" onsubmit="submitResena(event)">
+        <div class="form-group">
+          <label>Tu nombre *</label>
+          <input type="text" id="r-nombre" placeholder="Ej: Carlos García" required>
+        </div>
+        <div class="form-group">
+          <label>Ocupación <span style="font-weight:400;opacity:0.6">(opcional)</span></label>
+          <input type="text" id="r-cargo" placeholder="Ej: Ingeniero, Docente...">
+        </div>
+        <div class="form-group">
+          <label>Tu reseña *</label>
+          <textarea id="r-texto" placeholder="Contá tu experiencia comprando en PEP Motors..." required></textarea>
+        </div>
+        <button type="submit" class="resena-submit" id="submit-btn">Enviar reseña</button>
+      </form>
+    </div>
+
+    <!-- Thank you -->
+    <div id="thanks-section" class="resena-thanks">
+      <div class="thanks-icon">🙏</div>
+      <h2>¡Gracias por tu reseña!</h2>
+      <p>Tu opinión fue enviada y pronto aparecerá en nuestro sitio.<br>
+        <a href="index.html">← Volver al inicio</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script src="assets/js/storage.js"></script>
+<script>
+  let selectedStars = 5;
+
+  // Init: mark all stars as lit (default 5)
+  function setStars(n) {
+    selectedStars = n;
+    document.querySelectorAll('#star-picker span').forEach((s, i) => {
+      s.classList.toggle('lit', i < n);
+    });
+  }
+  setStars(5);
+
+  document.querySelectorAll('#star-picker span').forEach(s => {
+    s.addEventListener('click', () => setStars(parseInt(s.dataset.val)));
+    s.addEventListener('mouseenter', () => {
+      const v = parseInt(s.dataset.val);
+      document.querySelectorAll('#star-picker span').forEach((x, i) => x.classList.toggle('lit', i < v));
+    });
+  });
+  document.getElementById('star-picker').addEventListener('mouseleave', () => setStars(selectedStars));
+
+  // Load logo from config
+  (async () => {
+    try {
+      const config = await Storage.get('config');
+      const logo = config && config.apariencia && config.apariencia.logo_url;
+      if (logo) document.getElementById('logo-img').src = logo;
+    } catch(_) {}
+  })();
+
+  async function submitResena(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('r-nombre').value.trim();
+    const cargo = document.getElementById('r-cargo').value.trim();
+    const texto = document.getElementById('r-texto').value.trim();
+    if (!nombre || !texto) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    const config = await Storage.get('config');
+    const testimonios = [...(config.testimonios || [])];
+    testimonios.push({ nombre, cargo: cargo || 'Cliente PEP Motors', texto, estrellas: selectedStars });
+
+    const updated = { ...config, testimonios };
+    await Storage.set('config', updated);
+
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('thanks-section').style.display = 'block';
+  }
+</script>
+</body>
+</html>

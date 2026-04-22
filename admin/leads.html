@@ -16,23 +16,27 @@
 
       <div class="page-header-admin flex justify-between items-center mb-6">
         <div>
-          <h1 class="page-title">Leads / CRM</h1>
+          <h1 class="page-title">CRM — Contactos</h1>
           <p class="page-subtitle" id="leads-info">Cargando...</p>
         </div>
         <div class="page-actions">
-          <button class="btn btn-outline" onclick="toggleView()">
+          <div class="tabs" style="margin:0">
+            <button class="tab-btn active" id="tab-pipeline-btn" onclick="switchCrmTab('pipeline')">Pipeline</button>
+            <button class="tab-btn" id="tab-contactos-btn" onclick="switchCrmTab('contactos')">Todos los contactos</button>
+          </div>
+          <button class="btn btn-outline" id="toggle-view-btn" onclick="toggleView()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             <span id="view-label">Vista Kanban</span>
           </button>
           <button class="btn btn-primary" onclick="openLeadModal()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Nuevo lead
+            Nuevo contacto
           </button>
         </div>
       </div>
 
       <!-- Filters -->
-      <div style="display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap">
+      <div id="pipeline-filters" style="display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap">
         <select class="form-control" id="filter-estado" style="max-width:160px" onchange="renderLeads()">
           <option value="">Todos los estados</option>
           <option value="nuevo">Nuevo</option>
@@ -81,6 +85,32 @@
       <!-- Kanban view -->
       <div id="kanban-view" style="display:none">
         <div class="kanban-board" id="kanban-board"></div>
+      </div>
+
+      <!-- Contactos view -->
+      <div id="contactos-view" style="display:none">
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <div class="table-search" style="flex:1;max-width:320px">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="search-contactos" placeholder="Buscar contacto..." oninput="renderContactos()">
+          </div>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Estado</th>
+                <th>Vehículo de interés</th>
+                <th>Vendedor</th>
+                <th style="text-align:right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="contactos-tbody"></tbody>
+          </table>
+        </div>
       </div>
 
     </div>
@@ -171,8 +201,25 @@
       </div>
       <div class="form-group">
         <label>Notas</label>
-        <textarea class="form-control" id="l-notas" rows="3"></textarea>
+        <textarea class="form-control" id="l-notas" rows="2"></textarea>
       </div>
+      <details style="margin-top:4px">
+        <summary style="font-size:12px;color:var(--color-gray);cursor:pointer;user-select:none;margin-bottom:10px">+ Datos adicionales del cliente (opcional)</summary>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Apellido</label>
+            <input type="text" class="form-control" id="l-apellido">
+          </div>
+          <div class="form-group">
+            <label>DNI</label>
+            <input type="text" class="form-control" id="l-dni">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Dirección</label>
+          <input type="text" class="form-control" id="l-direccion">
+        </div>
+      </details>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('lead-modal')">Cancelar</button>
@@ -246,6 +293,51 @@
   let allLeads = [], allVehicles = [], allUsers = [];
   let viewMode = 'table';
   let currentLeadId = null;
+  let crmTab = 'pipeline'; // 'pipeline' | 'contactos'
+
+  function switchCrmTab(tab) {
+    crmTab = tab;
+    document.getElementById('tab-pipeline-btn').classList.toggle('active', tab === 'pipeline');
+    document.getElementById('tab-contactos-btn').classList.toggle('active', tab === 'contactos');
+    const isPipeline = tab === 'pipeline';
+    document.getElementById('pipeline-filters').style.display = isPipeline ? '' : 'none';
+    document.getElementById('toggle-view-btn').style.display = isPipeline ? '' : 'none';
+    document.getElementById('table-view').style.display = isPipeline && viewMode === 'table' ? '' : 'none';
+    document.getElementById('kanban-view').style.display = isPipeline && viewMode === 'kanban' ? '' : 'none';
+    document.getElementById('contactos-view').style.display = isPipeline ? 'none' : '';
+    if (!isPipeline) renderContactos();
+  }
+
+  function renderContactos() {
+    const q = (document.getElementById('search-contactos').value || '').toLowerCase();
+    const filtered = allLeads.filter(l => {
+      const text = `${l.nombre} ${l.email || ''} ${l.telefono || ''}`.toLowerCase();
+      return !q || text.includes(q);
+    });
+    document.getElementById('contactos-tbody').innerHTML = filtered.length
+      ? filtered.map(l => `<tr>
+          <td style="font-weight:600;color:var(--color-white)">${l.nombre}${l.apellido ? ' ' + l.apellido : ''}</td>
+          <td style="font-size:12px">${l.telefono ? `<a href="tel:${l.telefono}" style="color:var(--color-primary)">${l.telefono}</a>` : '—'}</td>
+          <td style="font-size:12px;color:var(--color-gray)">${l.email || '—'}</td>
+          <td><span class="status-badge ${statusMap[l.estado]}">${statusLabel[l.estado]}</span></td>
+          <td style="font-size:12px;color:var(--color-light-gray)">${l.vehiculo_texto || '—'}</td>
+          <td style="font-size:12px;color:var(--color-light-gray)">${l.vendedor_id ? vendedorNombre(l.vendedor_id) : '—'}</td>
+          <td>
+            <div class="td-actions" style="justify-content:flex-end">
+              ${l.telefono ? `<a href="https://wa.me/${l.telefono}" target="_blank" class="action-btn action-btn-success" title="WhatsApp">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </a>` : ''}
+              <button class="action-btn action-btn-edit" onclick="openLeadDetail('${l.id}')" title="Ver detalle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </button>
+              <button class="action-btn action-btn-edit" onclick="openLeadModal('${l.id}')" title="Editar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>`).join('')
+      : '<tr><td colspan="7" class="text-muted" style="padding:32px;text-align:center">No hay contactos</td></tr>';
+  }
 
   const statusMap = { nuevo: 'badge-nuevo', contactado: 'badge-contactado', negociacion: 'badge-negociacion', vendido: 'badge-vendido', cerrado: 'badge-cerrado', perdido: 'badge-perdido' };
   const statusLabel = { nuevo: 'Nuevo', contactado: 'Contactado', negociacion: 'En negociación', vendido: 'Vendido', cerrado: 'Cerrado', perdido: 'Perdido' };
@@ -562,6 +654,9 @@
     if (id) {
       const l = allLeads.find(x => x.id === id);
       document.getElementById('l-nombre').value = l.nombre;
+      document.getElementById('l-apellido').value = l.apellido || '';
+      document.getElementById('l-dni').value = l.dni || '';
+      document.getElementById('l-direccion').value = l.direccion || '';
       document.getElementById('l-telefono').value = l.telefono || '';
       document.getElementById('l-email').value = l.email || '';
       document.getElementById('l-vehiculo').value = l.vehiculo_id || '';
@@ -576,6 +671,9 @@
       }
     } else {
       document.getElementById('l-nombre').value = '';
+      document.getElementById('l-apellido').value = '';
+      document.getElementById('l-dni').value = '';
+      document.getElementById('l-direccion').value = '';
       document.getElementById('l-telefono').value = '';
       document.getElementById('l-email').value = '';
       document.getElementById('l-vehiculo').value = '';
@@ -599,6 +697,9 @@
 
     const data = {
       nombre,
+      apellido: document.getElementById('l-apellido').value.trim(),
+      dni: document.getElementById('l-dni').value.trim(),
+      direccion: document.getElementById('l-direccion').value.trim(),
       telefono: document.getElementById('l-telefono').value.trim(),
       email: document.getElementById('l-email').value.trim(),
       vehiculo_id: vid || null,
@@ -682,7 +783,7 @@
       id: Storage.generateId('vta'),
       vehiculo_id: l.vehiculo_id || null,
       vehiculo_texto: l.vehiculo_texto || '',
-      cliente_id: null,
+      cliente_id: l.id,
       cliente_nombre: clienteNombre,
       fecha_venta: fecha,
       precio_lista: null,
@@ -700,6 +801,28 @@
     // Marcar vehículo como vendido
     if (l.vehiculo_id) {
       await Storage.update('vehiculos', l.vehiculo_id, { estado: 'vendido', fecha_venta: fecha });
+    }
+
+    // Auto-crear cliente en clientes.json si no existe
+    const existingClientes = await Storage.get('clientes');
+    const existingClient = existingClientes.find(c =>
+      (l.email && c.email === l.email) || c.nombre === l.nombre.split(' ')[0]
+    );
+    if (!existingClient) {
+      const parts = l.nombre.trim().split(' ');
+      await Storage.add('clientes', {
+        id: Storage.generateId('c'),
+        nombre: parts[0] || l.nombre,
+        apellido: l.apellido || parts.slice(1).join(' ') || '',
+        dni: l.dni || '',
+        email: l.email || '',
+        telefono: l.telefono || '',
+        direccion: l.direccion || '',
+        fecha_creacion: new Date().toISOString().slice(0, 10),
+        leads_ids: [l.id],
+        ventas_ids: [venta.id],
+        notas: ''
+      });
     }
 
     allLeads = await Storage.get('leads');

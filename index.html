@@ -286,8 +286,21 @@
       <div class="gradient-line"></div>
       <h2 class="section-title">Lo que dicen nuestros clientes</h2>
     </div>
-    <div class="testimonials-grid" id="testimonials-grid">
-      <!-- loaded -->
+    <div class="testimonials-carousel" id="testimonials-carousel">
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="testimonials-track">
+          <!-- loaded -->
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="carousel-prev" aria-label="Anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <button class="carousel-btn" id="carousel-next" aria-label="Siguiente">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -493,23 +506,66 @@
       </div>`).join('');
   }
 
+  let _carouselIdx = 0, _carouselTimer = null;
+
   function loadTestimonios() {
     const ts = config.testimonios || [];
-    document.getElementById('testimonials-grid').innerHTML = ts.map(t => {
-      const stars = '★'.repeat(t.estrellas || 5) + '☆'.repeat(5 - (t.estrellas || 5));
+    if (!ts.length) { document.getElementById('testimonios-section').style.display = 'none'; return; }
+
+    const track = document.getElementById('testimonials-track');
+    const dotsEl = document.getElementById('carousel-dots');
+
+    track.innerHTML = ts.map(t => {
+      const stars = [...Array(5)].map((_, i) =>
+        `<span style="color:${i < (t.estrellas || 5) ? 'var(--gold)' : 'var(--border)'}">★</span>`
+      ).join('');
       return `
-        <div class="testimonial-card">
-          <div class="testimonial-stars">${[...stars].map((s,i) => `<span style="color:${i<(t.estrellas||5)?'var(--color-warning)':'var(--color-dark-4)'}">${s}</span>`).join('')}</div>
-          <p class="testimonial-text">"${t.texto}"</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">${t.nombre.charAt(0)}</div>
-            <div>
-              <p class="testimonial-name">${t.nombre}</p>
-              <p class="testimonial-role">${t.cargo || 'Cliente PEP Motors'}</p>
+        <div class="carousel-slide">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">${stars}</div>
+            <p class="testimonial-text">"${t.texto}"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">${t.nombre.charAt(0)}</div>
+              <div>
+                <p class="testimonial-name">${t.nombre}</p>
+                <p class="testimonial-role">${t.cargo || 'Cliente PEP Motors'}</p>
+              </div>
             </div>
           </div>
         </div>`;
     }).join('');
+
+    dotsEl.innerHTML = ts.map((_, i) =>
+      `<button class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="_goToSlide(${i})"></button>`
+    ).join('');
+
+    if (ts.length <= 1) {
+      document.querySelector('.carousel-nav').style.display = 'none';
+    } else {
+      document.getElementById('carousel-prev').addEventListener('click', () => {
+        _goToSlide(_carouselIdx - 1); _resetCarouselTimer(ts.length);
+      });
+      document.getElementById('carousel-next').addEventListener('click', () => {
+        _goToSlide(_carouselIdx + 1); _resetCarouselTimer(ts.length);
+      });
+      _resetCarouselTimer(ts.length);
+    }
+  }
+
+  function _goToSlide(idx) {
+    const track = document.getElementById('testimonials-track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    if (!slides.length) return;
+    _carouselIdx = ((idx % slides.length) + slides.length) % slides.length;
+    track.style.transform = `translateX(-${_carouselIdx * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === _carouselIdx)
+    );
+  }
+
+  function _resetCarouselTimer(count) {
+    clearInterval(_carouselTimer);
+    _carouselTimer = setInterval(() => _goToSlide(_carouselIdx + 1), 5000);
   }
 
   function filterHeroModelo() {

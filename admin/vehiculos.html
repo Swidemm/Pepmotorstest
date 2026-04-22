@@ -302,9 +302,12 @@
   document.getElementById('topbar-container').innerHTML = renderTopbar('Inventario', '');
   initSidebar();
 
-  // Hide cost for vendedores
-  if (session.rol === 'vendedor') {
+  const isVendedor = session.rol === 'vendedor';
+
+  // Vendedores: solo lectura
+  if (isVendedor) {
     document.getElementById('cost-group').style.display = 'none';
+    document.querySelector('[onclick="openVehicleModal()"]').style.display = 'none';
   }
 
   const EQUIPAMIENTO = [
@@ -370,12 +373,15 @@
           <td>${formatKm(v.km)}</td>
           <td style="font-weight:600;color:var(--color-white)">${formatPrice(v.precio)}</td>
           <td>
-            <select class="form-control" style="padding:4px 8px;font-size:12px;width:auto" onchange="quickStatus('${v.id}', this.value)">
-              <option value="disponible" ${v.estado==='disponible'?'selected':''}>Disponible</option>
-              <option value="reservado" ${v.estado==='reservado'?'selected':''}>Reservado</option>
-              <option value="vendido" ${v.estado==='vendido'?'selected':''}>Vendido</option>
-              <option value="revision" ${v.estado==='revision'?'selected':''}>En revisión</option>
-            </select>
+            ${isVendedor
+              ? `<span class="status-badge ${statusMap[v.estado]}">${v.estado}</span>`
+              : `<select class="form-control" style="padding:4px 8px;font-size:12px;width:auto" onchange="quickStatus('${v.id}', this.value)">
+                  <option value="disponible" ${v.estado==='disponible'?'selected':''}>Disponible</option>
+                  <option value="reservado" ${v.estado==='reservado'?'selected':''}>Reservado</option>
+                  <option value="vendido" ${v.estado==='vendido'?'selected':''}>Vendido</option>
+                  <option value="revision" ${v.estado==='revision'?'selected':''}>En revisión</option>
+                </select>`
+            }
           </td>
           <td>
             <span style="color:${v.destacado?'var(--color-warning)':'var(--color-gray)'}">${v.destacado?'★ Sí':'—'}</span>
@@ -385,6 +391,7 @@
               <a href="../vehiculo.html?id=${v.id}" target="_blank" class="action-btn action-btn-view" title="Ver en sitio">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               </a>
+              ${!isVendedor ? `
               <button class="action-btn action-btn-view" title="Duplicar" onclick="duplicateVehicle('${v.id}')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
               </button>
@@ -393,7 +400,7 @@
               </button>
               <button class="action-btn action-btn-delete" title="Eliminar" onclick="deleteVehicle('${v.id}')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-              </button>
+              </button>` : ''}
             </div>
           </td>
         </tr>`).join('')

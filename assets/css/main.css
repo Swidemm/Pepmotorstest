@@ -701,14 +701,36 @@ textarea.form-control { resize: vertical; min-height: 120px; line-height: 1.6; }
 .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 input[type="range"] { width: 100%; accent-color: var(--gold); height: 4px; cursor: pointer; }
 
-/* ── TESTIMONIALS ── */
+/* ── TESTIMONIALS CAROUSEL ── */
 .testimonials-section { background: var(--card); }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 0;
+.testimonials-carousel { position: relative; max-width: 680px; margin: 0 auto; }
+.carousel-track-wrap { overflow: hidden; border-radius: var(--radius); }
+.carousel-track { display: flex; transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+.carousel-slide { min-width: 100%; padding: 4px; box-sizing: border-box; }
+.carousel-nav {
+  display: flex; justify-content: center; align-items: center;
+  gap: 16px; margin-top: 28px;
 }
+.carousel-btn {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg-secondary); width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all var(--ease); flex-shrink: 0;
+}
+.carousel-btn:hover { background: var(--gold); border-color: var(--gold); color: #000; }
+.carousel-dots { display: flex; gap: 8px; align-items: center; }
+.carousel-dot {
+  width: 8px; height: 8px; border-radius: 4px;
+  background: var(--border); border: none; cursor: pointer;
+  transition: all 0.25s; padding: 0;
+}
+.carousel-dot.active { background: var(--gold); width: 24px; }
+.carousel-review-link {
+  text-align: center; margin-top: 28px;
+  font-size: 14px; color: var(--fg-tertiary);
+}
+.carousel-review-link a { color: var(--gold); text-decoration: none; }
+.carousel-review-link a:hover { text-decoration: underline; }
 .testimonial-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1175,7 +1197,7 @@ input[type="range"] { width: 100%; accent-color: var(--gold); height: 4px; curso
   .vehicles-grid { grid-template-columns: repeat(2, 1fr); }
   .financing-grid { grid-template-columns: 1fr; gap: 32px; }
   .tasacion-grid { grid-template-columns: 1fr; gap: 32px; }
-  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .testimonials-carousel { max-width: 100%; }
   .two-col-grid { grid-template-columns: 1fr; gap: 32px; }
   .detail-grid { grid-template-columns: 1fr; }
   .vehicle-gallery, .gallery { position: static; }
@@ -1188,7 +1210,7 @@ input[type="range"] { width: 100%; accent-color: var(--gold); height: 4px; curso
   .hero { padding: 100px 0 60px; }
   .vehicles-grid { grid-template-columns: 1fr; }
   .hero-search-grid { grid-template-columns: 1fr; }
-  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonials-carousel { max-width: 100%; }
   .hero-stats-strip { flex-direction: column; gap: 20px; }
   .hero-stat + .hero-stat { border-left: none; border-top: 1px solid var(--border); padding: 20px 0 0; }
   .stats-grid { grid-template-columns: 1fr; }

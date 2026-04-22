@@ -143,13 +143,13 @@
   document.getElementById('topbar-container').innerHTML = renderTopbar('Ventas', '');
   initSidebar();
 
-  let allVentas = [], allVehiculos = [], allClientes = [], allUsers = [];
+  let allVentas = [], allVehiculos = [], allLeads = [], allUsers = [];
 
   const pagoLabel = { contado: 'Contado', financiado: 'Financiado', plan_ahorro: 'Plan de ahorro', permuta: 'Permuta + diferencia' };
 
   async function loadData() {
-    [allVentas, allVehiculos, allClientes, allUsers] = await Promise.all([
-      Storage.get('ventas'), Storage.get('vehiculos'), Storage.get('clientes'), Storage.get('usuarios')
+    [allVentas, allVehiculos, allLeads, allUsers] = await Promise.all([
+      Storage.get('ventas'), Storage.get('vehiculos'), Storage.get('leads'), Storage.get('usuarios')
     ]);
     buildMesFilter();
     renderVentas();
@@ -221,10 +221,14 @@
       o.dataset.precio = v.precio;
       vSelect.appendChild(o);
     });
-    allClientes.forEach(c => {
+    const uniqueNames = new Set();
+    allLeads.forEach(l => {
+      if (!l.nombre || uniqueNames.has(l.id)) return;
+      uniqueNames.add(l.id);
       const o = document.createElement('option');
-      o.value = c.id;
-      o.textContent = `${c.nombre} ${c.apellido}`;
+      o.value = l.id;
+      o.textContent = l.nombre + (l.email ? ` — ${l.email}` : l.telefono ? ` — ${l.telefono}` : '');
+      o.dataset.nombre = l.nombre;
       cSelect.appendChild(o);
     });
     document.getElementById('vt-precio-lista').value = '';
@@ -250,13 +254,13 @@
     if (!vid || !cid || !precioFinal) { showToast('Completá los campos obligatorios', 'error'); return; }
 
     const v = allVehiculos.find(x => x.id === vid);
-    const c = allClientes.find(x => x.id === cid);
+    const lead = allLeads.find(x => x.id === cid);
     const venta = {
       id: Storage.generateId('vta'),
       vehiculo_id: vid,
       vehiculo_texto: `${v.marca} ${v.modelo} ${v.version} ${v.anio}`,
       cliente_id: cid,
-      cliente_nombre: `${c.nombre} ${c.apellido}`,
+      cliente_nombre: lead ? lead.nombre : cid,
       fecha_venta: document.getElementById('vt-fecha').value,
       precio_lista: v.precio,
       precio_final: precioFinal,
@@ -268,9 +272,8 @@
 
     await Storage.add('ventas', venta);
     await Storage.update('vehiculos', vid, { estado: 'vendido', fecha_venta: venta.fecha_venta });
-    const clienteLeads = (await Storage.get('leads')).filter(l => l.cliente_id === cid || l.email === c.email);
-    for (const lead of clienteLeads) {
-      await Storage.update('leads', lead.id, { estado: 'cerrado' });
+    if (lead) {
+      await Storage.update('leads', lead.id, { estado: 'vendido', ultima_actividad: new Date().toISOString() });
     }
 
     document.getElementById('venta-modal').classList.remove('active');

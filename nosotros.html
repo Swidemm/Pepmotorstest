@@ -35,7 +35,7 @@
   <div class="container">
     <p class="section-tag" style="justify-content:center;display:flex">PEP Motors</p>
     <h1>Quiénes somos</h1>
-    <p style="color:var(--color-light-gray);font-size:17px;margin-top:8px;max-width:520px;margin-left:auto;margin-right:auto" id="page-subtitle">Más de una década de experiencia en el mercado automotor argentino</p>
+    <p style="color:var(--color-light-gray);font-size:17px;margin-top:8px;max-width:520px;margin-left:auto;margin-right:auto" id="page-subtitle">Más de 15 años de experiencia en el mercado automotor argentino</p>
   </div>
 </div>
 
@@ -46,7 +46,7 @@
       <div>
         <p class="section-tag">Nuestra historia</p>
         <div class="gradient-line"></div>
-        <h2 class="section-title">Más de 12 años conectando personas con sus autos</h2>
+        <h2 class="section-title">Más de 15 años conectando personas con sus autos</h2>
         <p style="color:var(--color-light-gray);font-size:16px;line-height:1.8;margin-top:16px" id="historia-text">Cargando...</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px">
           <div style="background:var(--color-dark-2);border:1px solid var(--color-dark-3);border-radius:var(--radius);padding:20px;text-align:center">
@@ -143,10 +143,10 @@
       document.getElementById('whatsapp-float').href = `https://wa.me/${wa}`;
       document.getElementById('wa-link').href = `https://wa.me/${wa}`;
     }
-    document.getElementById('historia-text').textContent = config.historia || 'PEP Motors nació con la premisa de hacer que comprar un auto sea simple, honesto y memorable.';
-    document.getElementById('stat-anios').textContent = e.stats_anios || 12;
+    document.getElementById('historia-text').textContent = config.historia || 'PEP Motors nació en 2009 en Sáenz Peña con una sola premisa: hacer que comprar un auto sea una experiencia simple, honesta y memorable. En más de 15 años, ayudamos a cientos de familias y empresas a encontrar su vehículo ideal. Hoy somos un referente del mercado automotor de la zona, con un equipo comprometido con la excelencia y la transparencia en cada operación.';
+    document.getElementById('stat-anios').textContent = e.stats_anios || 15;
     document.getElementById('stat-clientes').textContent = e.stats_clientes || 850;
-    document.getElementById('page-subtitle').textContent = e.slogan || 'Más de una década de experiencia en el mercado automotor argentino';
+    document.getElementById('page-subtitle').textContent = 'Más de 15 años de experiencia en el mercado automotor argentino';
     document.getElementById('dir-texto').textContent = e.direccion || '';
     if (e.maps_embed) document.getElementById('maps-frame').src = e.maps_embed;
     document.getElementById('contact-details').innerHTML = [
