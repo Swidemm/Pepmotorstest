@@ -89,48 +89,48 @@ window.Favorites = {
 // ---- Vehicle card HTML ----
 window.buildVehicleCard = function(v) {
   const isFav = Favorites.has(v.id);
-  const badgeClass = v.condicion === '0km' ? 'badge-0km' : 'badge-usado';
-  const badgeText = v.condicion === '0km' ? '0KM' : 'USADO';
+  const badgeCls = v.condicion === '0km' ? 'vc-badge-0km' : 'vc-badge-used';
+  const badgeTxt = v.condicion === '0km' ? '0KM' : 'USADO';
   const imgHtml = v.fotos && v.fotos.length
     ? `<img src="${v.fotos[v.foto_principal || 0]}" alt="${v.marca} ${v.modelo}" loading="lazy">`
-    : `<div class="vehicle-card-placeholder">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        <span style="font-size:12px">Sin foto</span>
+    : `<div class="vc-img-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Sin foto</span>
       </div>`;
 
   return `
-    <div class="vehicle-card" onclick="window.location.href='vehiculo.html?id=${v.id}'">
-      <div class="vehicle-card-img">
+    <article class="vehicle-card" onclick="window.location.href='vehiculo.html?id=${v.id}'">
+      <div class="vc-img">
         ${imgHtml}
-        <span class="badge ${badgeClass}">${badgeText}</span>
-        <button class="btn-fav ${isFav ? 'active' : ''}" data-id="${v.id}" onclick="event.stopPropagation(); toggleFav(this, '${v.id}')">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span class="vc-badge ${badgeCls}">${badgeTxt}</span>
+        <button class="vc-heart ${isFav ? 'active' : ''}" data-id="${v.id}" onclick="event.stopPropagation(); toggleFav(this, '${v.id}')" aria-label="Favorito">
+          <svg viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         </button>
       </div>
-      <div class="vehicle-card-body">
-        <p class="vehicle-card-brand">${v.marca}</p>
-        <h3 class="vehicle-card-name">${v.modelo}</h3>
-        <p class="vehicle-card-version">${v.version}</p>
-        <div class="vehicle-card-specs">
-          <span class="vehicle-card-spec">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div class="vc-body">
+        <div class="vc-brand">${v.marca}</div>
+        <div class="vc-name">${v.modelo}</div>
+        <div class="vc-version">${v.version}</div>
+        <div class="vc-specs">
+          <span class="vc-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             ${v.anio}
           </span>
-          <span class="vehicle-card-spec">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          <span class="vc-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
             ${v.combustible}
           </span>
-          <span class="vehicle-card-spec">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+          <span class="vc-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
             ${formatKm(v.km)}
           </span>
         </div>
-        <div class="vehicle-card-footer">
-          <span class="vehicle-card-price">${formatPrice(v.precio)}</span>
+        <div class="vc-footer">
+          <div class="vc-price">${formatPrice(v.precio)}</div>
           <a href="vehiculo.html?id=${v.id}" class="btn btn-primary btn-sm" onclick="event.stopPropagation()">Ver más</a>
         </div>
       </div>
-    </div>`;
+    </article>`;
 };
 
 window.toggleFav = function(btn, id) {
@@ -138,7 +138,7 @@ window.toggleFav = function(btn, id) {
   const svg = btn.querySelector('svg');
   btn.classList.toggle('active', added);
   if (svg) svg.setAttribute('fill', added ? 'currentColor' : 'none');
-  showToast(added ? 'Agregado a favoritos' : 'Eliminado de favoritos', added ? 'success' : 'info', 2000);
+  showToast(added ? '❤ Agregado a favoritos' : 'Quitado de favoritos', added ? 'success' : 'info', 2000);
 };
 
 // ---- Counter animation ----
