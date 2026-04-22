@@ -493,6 +493,11 @@
   async function dropLead(e, estado) {
     e.preventDefault();
     if (!draggingId) return;
+    if (estado === 'vendido') {
+      openVentaModal(draggingId);
+      draggingId = null;
+      return;
+    }
     await Storage.update('leads', draggingId, { estado, ultima_actividad: new Date().toISOString() });
     allLeads = await Storage.get('leads');
     renderLeads();
@@ -720,18 +725,29 @@
       }
     }
 
+    const existingLead = id ? allLeads.find(x => x.id === id) : null;
+    const markingVendido = data.estado === 'vendido' && (!existingLead || existingLead.estado !== 'vendido');
+
+    if (markingVendido) {
+      data.estado = existingLead ? existingLead.estado : 'nuevo';
+    }
+
     if (id) {
       await Storage.update('leads', id, data);
-      showToast('Lead actualizado', 'success');
+      if (!markingVendido) showToast('Lead actualizado', 'success');
     } else {
       data.id = Storage.generateId('l');
       data.fecha_creacion = new Date().toISOString();
       data.historial = [];
       await Storage.add('leads', data);
-      showToast('Lead creado', 'success');
+      if (!markingVendido) showToast('Lead creado', 'success');
     }
     document.getElementById('lead-modal').classList.remove('active');
     allLeads = await Storage.get('leads');
+    if (markingVendido) {
+      openVentaModal(id || data.id);
+      return;
+    }
     renderLeads();
   }
 
