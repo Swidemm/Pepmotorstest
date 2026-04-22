@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vehículo — PEP Motors</title>
+  <meta name="description" content="Ficha de vehículo en PEP Motors, concesionario en Sáenz Peña. Consultá precio, financiación y solicitá test drive.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" id="seo-canonical" href="https://swidemm.github.io/Pepmotorstest/vehiculo.html">
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="PEP Motors">
+  <meta property="og:locale" content="es_AR">
+  <meta id="og-url" property="og:url" content="https://swidemm.github.io/Pepmotorstest/vehiculo.html">
+  <meta id="og-title" property="og:title" content="Vehículo — PEP Motors">
+  <meta id="og-description" property="og:description" content="Consultá precio, financiación y solicitá test drive en PEP Motors, Sáenz Peña.">
+  <meta id="og-image" property="og:image" content="https://swidemm.github.io/Pepmotorstest/assets/img/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta id="tw-title" name="twitter:title" content="Vehículo — PEP Motors">
+  <meta id="tw-description" name="twitter:description" content="Consultá precio, financiación y solicitá test drive en PEP Motors.">
+  <meta id="tw-image" name="twitter:image" content="https://swidemm.github.io/Pepmotorstest/assets/img/logo.png">
   <link rel="stylesheet" href="assets/css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -183,7 +197,45 @@
       return;
     }
 
-    document.title = `${vehicle.marca} ${vehicle.modelo} ${vehicle.anio} — PEP Motors`;
+    document.title = `${vehicle.marca} ${vehicle.modelo} ${vehicle.version ? vehicle.version + ' ' : ''}${vehicle.anio} — PEP Motors`;
+    const pageUrl = `https://swidemm.github.io/Pepmotorstest/vehiculo.html?id=${vehicle.id}`;
+    const seoDesc = `${vehicle.marca} ${vehicle.modelo}${vehicle.version ? ' ' + vehicle.version : ''} ${vehicle.anio} en PEP Motors. ${vehicle.condicion === '0km' ? '0 km.' : (vehicle.km ? vehicle.km.toLocaleString('es-AR') + ' km.' : '')} Precio: ${formatPrice(vehicle.precio)}. ${vehicle.financiable ? 'Con financiación disponible.' : ''}`;
+    document.querySelector('meta[name="description"]').content = seoDesc;
+    document.getElementById('seo-canonical').href = pageUrl;
+    document.getElementById('og-url').content = pageUrl;
+    document.getElementById('og-title').content = `${vehicle.marca} ${vehicle.modelo} ${vehicle.anio} — PEP Motors`;
+    document.getElementById('og-description').content = seoDesc;
+    document.getElementById('tw-title').content = `${vehicle.marca} ${vehicle.modelo} ${vehicle.anio} — PEP Motors`;
+    document.getElementById('tw-description').content = seoDesc;
+    const firstPhoto = vehicle.fotos && vehicle.fotos.length > 0 && !vehicle.fotos[0].startsWith('data:') ? vehicle.fotos[vehicle.foto_principal || 0] : null;
+    if (firstPhoto) { document.getElementById('og-image').content = firstPhoto; document.getElementById('tw-image').content = firstPhoto; }
+    const carSchema = {
+      "@context": "https://schema.org",
+      "@type": "Car",
+      "name": `${vehicle.marca} ${vehicle.modelo}${vehicle.version ? ' ' + vehicle.version : ''} ${vehicle.anio}`,
+      "brand": { "@type": "Brand", "name": vehicle.marca },
+      "model": vehicle.modelo,
+      "vehicleModelDate": String(vehicle.anio),
+      "color": vehicle.color,
+      "fuelType": vehicle.combustible,
+      "vehicleTransmission": vehicle.transmision,
+      "numberOfDoors": vehicle.puertas,
+      "mileageFromOdometer": { "@type": "QuantitativeValue", "value": vehicle.km || 0, "unitCode": "KMT" },
+      "vehicleCondition": vehicle.condicion === '0km' ? "https://schema.org/NewCondition" : "https://schema.org/UsedCondition",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "ARS",
+        "price": vehicle.precio,
+        "availability": vehicle.estado === 'disponible' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+        "url": pageUrl,
+        "seller": { "@type": "AutoDealer", "name": "PEP Motors", "url": "https://swidemm.github.io/Pepmotorstest/" }
+      }
+    };
+    if (firstPhoto) carSchema.image = firstPhoto;
+    const ldTag = document.createElement('script');
+    ldTag.type = 'application/ld+json';
+    ldTag.textContent = JSON.stringify(carSchema);
+    document.head.appendChild(ldTag);
     document.getElementById('breadcrumb-title').textContent = `${vehicle.marca} ${vehicle.modelo} ${vehicle.anio}`;
     document.getElementById('loading').style.display = 'none';
     document.getElementById('vehicle-content').style.display = '';

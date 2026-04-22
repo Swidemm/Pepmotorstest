@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /reseña.html
+
+Sitemap: https://swidemm.github.io/Pepmotorstest/sitemap.xml
