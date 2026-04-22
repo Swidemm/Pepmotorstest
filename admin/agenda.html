@@ -20,6 +20,9 @@
           <p class="page-subtitle" id="agenda-info">Cargando...</p>
         </div>
         <div class="page-actions">
+          <select class="form-control" id="agenda-filter-vendedor" style="max-width:200px;display:none" onchange="renderCalendar()">
+            <option value="">Todos</option>
+          </select>
           <button class="btn btn-primary" onclick="openEventModal()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             Nuevo evento
@@ -121,7 +124,7 @@
   document.getElementById('topbar-container').innerHTML = renderTopbar('Agenda', '');
   initSidebar();
 
-  let allEvents = [];
+  let allEvents = [], allUsuarios = [], allEquipos = [];
   let currentDate = new Date();
 
   const typeClass = { test_drive: 'event-test-drive', seguimiento: 'event-seguimiento', tarea: 'event-tarea' };
@@ -130,12 +133,51 @@
   const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
   const DAYS = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
 
+  function getVisibleEvents() {
+    const filterVendedor = document.getElementById('agenda-filter-vendedor').value;
+    if (filterVendedor) return allEvents.filter(e => e.vendedor_id === filterVendedor);
+    if (session.rol === 'vendedor') return allEvents.filter(e => e.vendedor_id === session.id);
+    if (session.rol === 'supervisor') {
+      const mis = allUsuarios.filter(u => u.supervisor_id === session.id).map(u => u.id);
+      return allEvents.filter(e => !e.vendedor_id || mis.includes(e.vendedor_id) || e.vendedor_id === session.id);
+    }
+    if (session.rol === 'gerente') {
+      const eq = allEquipos.find(e => e.gerente_id === session.id);
+      if (eq) {
+        const ids = [...(eq.supervisores_ids || []), ...(eq.vendedores_ids || []), eq.gerente_id].filter(Boolean);
+        return allEvents.filter(e => !e.vendedor_id || ids.includes(e.vendedor_id));
+      }
+    }
+    return allEvents; // admin ve todo
+  }
+
   async function loadAgenda() {
-    allEvents = await Storage.get('agenda');
+    [allEvents, allUsuarios, allEquipos] = await Promise.all([
+      Storage.get('agenda'), Storage.get('usuarios'), Storage.get('equipos')
+    ]);
+
+    // Poblar selector de vendedor (para supervisor+)
+    if (session.rol !== 'vendedor') {
+      const sel = document.getElementById('agenda-filter-vendedor');
+      sel.style.display = '';
+      let vendedores = allUsuarios.filter(u => u.rol === 'vendedor' && u.activo);
+      if (session.rol === 'supervisor') vendedores = vendedores.filter(u => u.supervisor_id === session.id);
+      else if (session.rol === 'gerente') {
+        const eq = allEquipos.find(e => e.gerente_id === session.id);
+        if (eq) vendedores = vendedores.filter(u => (eq.vendedores_ids || []).includes(u.id));
+      }
+      vendedores.forEach(u => {
+        const opt = document.createElement('option');
+        opt.value = u.id; opt.textContent = u.nombre;
+        sel.appendChild(opt);
+      });
+    }
+
     renderCalendar();
     renderSideEvents();
-    const pending = allEvents.filter(e => !e.completado).length;
-    document.getElementById('agenda-info').textContent = `${allEvents.length} eventos — ${pending} pendientes`;
+    const visible = getVisibleEvents();
+    const pending = visible.filter(e => !e.completado).length;
+    document.getElementById('agenda-info').textContent = `${visible.length} eventos — ${pending} pendientes`;
   }
 
   function changeMonth(dir) {
@@ -162,7 +204,7 @@
     for (let d = 1; d <= daysInMonth; d++) {
       const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
       const isToday = dateStr === today;
-      const dayEvents = allEvents.filter(e => e.fecha === dateStr);
+      const dayEvents = getVisibleEvents().filter(e => e.fecha === dateStr);
       const eventsHtml = dayEvents.slice(0, 3).map(e =>
         `<div class="day-event ${typeClass[e.tipo]}" title="${e.titulo}">${e.hora ? e.hora + ' ' : ''}${e.titulo}</div>`
       ).join('');
@@ -185,8 +227,9 @@
 
   function renderSideEvents() {
     const today = new Date().toISOString().slice(0, 10);
-    const todayEvs = allEvents.filter(e => e.fecha === today && !e.completado);
-    const upcoming = allEvents.filter(e => e.fecha > today && !e.completado)
+    const visible = getVisibleEvents();
+    const todayEvs = visible.filter(e => e.fecha === today && !e.completado);
+    const upcoming = visible.filter(e => e.fecha > today && !e.completado)
       .sort((a,b) => a.fecha.localeCompare(b.fecha) || (a.hora||'').localeCompare(b.hora||'')).slice(0, 5);
 
     const renderEvent = (e) => `

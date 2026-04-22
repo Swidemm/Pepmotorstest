@@ -1,0 +1,9 @@
+[
+  {
+    "id": "eq001",
+    "nombre": "Equipo Demo",
+    "gerente_id": "u002",
+    "supervisores_ids": ["u003"],
+    "vendedores_ids": ["u004"]
+  }
+]

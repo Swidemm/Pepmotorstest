@@ -41,7 +41,7 @@
 </div>
 
 <!-- Breadcrumb -->
-<div style="background:var(--color-dark-2);border-bottom:1px solid var(--color-dark-3);padding-top:80px">
+<div style="background:var(--color-dark-2);border-bottom:1px solid var(--color-dark-3);padding-top:88px">
   <div class="container" style="padding-top:14px;padding-bottom:14px">
     <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--color-gray)">
       <a href="index.html" style="color:var(--color-gray);transition:color 0.2s" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-gray)'">Inicio</a>
@@ -84,7 +84,7 @@
       <div class="vehicle-info">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
           <span class="badge" id="info-badge">—</span>
-          <span id="info-estado-badge" class="tag"></span>
+          <span id="info-estado-badge" class="tag" style="display:none"></span>
         </div>
         <p style="font-size:13px;font-weight:700;color:var(--color-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px" id="info-marca">—</p>
         <h1 style="font-family:var(--font-display);font-size:36px;font-weight:800;line-height:1;margin-bottom:4px" id="info-nombre">—</h1>
@@ -218,10 +218,15 @@
     document.getElementById('info-tags').innerHTML = tags.join('');
 
     // Estado badge
+    const estadoBadge = document.getElementById('info-estado-badge');
     if (v.estado === 'reservado') {
-      document.getElementById('info-estado-badge').className = 'tag';
-      document.getElementById('info-estado-badge').style.cssText = 'border-color:var(--color-warning);color:var(--color-warning)';
-      document.getElementById('info-estado-badge').textContent = 'Reservado';
+      estadoBadge.style.cssText = 'border-color:var(--color-warning);color:var(--color-warning)';
+      estadoBadge.textContent = 'Reservado';
+      estadoBadge.style.display = '';
+    } else if (v.estado === 'en_revision') {
+      estadoBadge.style.cssText = 'border-color:var(--color-info);color:var(--color-info)';
+      estadoBadge.textContent = 'En revisión';
+      estadoBadge.style.display = '';
     }
 
     // Specs

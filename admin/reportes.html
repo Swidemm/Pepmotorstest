@@ -20,8 +20,14 @@
           <h1 class="page-title">Reportes</h1>
           <p class="page-subtitle">Métricas y estadísticas del negocio</p>
         </div>
-        <div class="page-actions">
-          <select class="form-control" id="period" style="max-width:200px" onchange="loadReportes()">
+        <div class="page-actions" style="flex-wrap:wrap;gap:8px">
+          <select class="form-control" id="filter-equipo" style="max-width:180px" onchange="onEquipoChange()">
+            <option value="">Todos los equipos</option>
+          </select>
+          <select class="form-control" id="filter-vendedor" style="max-width:180px" onchange="loadReportes()">
+            <option value="">Todos los vendedores</option>
+          </select>
+          <select class="form-control" id="period" style="max-width:160px" onchange="loadReportes()">
             <option value="month">Este mes</option>
             <option value="quarter">Último trimestre</option>
             <option value="year">Este año</option>
@@ -93,13 +99,14 @@
 <script src="../assets/js/admin/auth.js"></script>
 <script src="../assets/js/admin/sidebar.js"></script>
 <script>
-  Auth.require(['admin', 'gerente']);
+  Auth.require(['admin', 'gerente', 'supervisor']);
   const session = Auth.getSession();
   document.getElementById('sidebar-container').innerHTML = renderSidebar('reportes');
   document.getElementById('topbar-container').innerHTML = renderTopbar('Reportes', '');
   initSidebar();
 
   let charts = {};
+  let allUsuarios = [], allEquipos = [];
 
   function destroyCharts() {
     Object.values(charts).forEach(c => { if (c) c.destroy(); });
@@ -115,14 +122,97 @@
     return '2000-01-01';
   }
 
+  async function initFilters() {
+    [allUsuarios, allEquipos] = await Promise.all([Storage.get('usuarios'), Storage.get('equipos')]);
+
+    const equipoSel = document.getElementById('filter-equipo');
+    const vendedorSel = document.getElementById('filter-vendedor');
+
+    // Equipos visibles según rol
+    let visibleEquipos = allEquipos;
+    if (session.rol === 'gerente') visibleEquipos = allEquipos.filter(e => e.gerente_id === session.id);
+    if (session.rol === 'supervisor') visibleEquipos = allEquipos.filter(e => (e.supervisores_ids || []).includes(session.id));
+
+    visibleEquipos.forEach(e => {
+      const opt = document.createElement('option');
+      opt.value = e.id; opt.textContent = e.nombre;
+      equipoSel.appendChild(opt);
+    });
+
+    // Si solo hay un equipo, preseleccionarlo
+    if (visibleEquipos.length === 1) equipoSel.value = visibleEquipos[0].id;
+
+    populateVendedores();
+  }
+
+  function getVendedorIdsForEquipo(equipoId) {
+    if (!equipoId) return null; // null = todos
+    const eq = allEquipos.find(e => e.id === equipoId);
+    if (!eq) return [];
+    return [...(eq.supervisores_ids || []), ...(eq.vendedores_ids || []), eq.gerente_id].filter(Boolean);
+  }
+
+  function populateVendedores() {
+    const equipoId = document.getElementById('filter-equipo').value;
+    const vendedorSel = document.getElementById('filter-vendedor');
+    const prev = vendedorSel.value;
+    vendedorSel.innerHTML = '<option value="">Todos los vendedores</option>';
+
+    let vendedores = allUsuarios.filter(u => u.rol === 'vendedor' && u.activo);
+    if (equipoId) {
+      const ids = getVendedorIdsForEquipo(equipoId);
+      vendedores = vendedores.filter(u => ids && ids.includes(u.id));
+    }
+    if (session.rol === 'supervisor') {
+      vendedores = vendedores.filter(u => u.supervisor_id === session.id);
+    }
+    vendedores.forEach(u => {
+      const opt = document.createElement('option');
+      opt.value = u.id; opt.textContent = u.nombre;
+      vendedorSel.appendChild(opt);
+    });
+    if (prev) vendedorSel.value = prev;
+    loadReportes();
+  }
+
+  window.onEquipoChange = function() {
+    populateVendedores();
+  };
+
+  function applyTeamFilter(arr, dateField) {
+    const equipoId = document.getElementById('filter-equipo').value;
+    const vendedorId = document.getElementById('filter-vendedor').value;
+    const from = getDateRange();
+
+    let result = arr.filter(x => (x[dateField] || '').slice(0,10) >= from);
+
+    if (vendedorId) {
+      result = result.filter(x => x.vendedor_id === vendedorId);
+    } else if (equipoId) {
+      const ids = getVendedorIdsForEquipo(equipoId);
+      if (ids) result = result.filter(x => !x.vendedor_id || ids.includes(x.vendedor_id));
+    } else if (session.rol === 'supervisor') {
+      const mis = allUsuarios.filter(u => u.supervisor_id === session.id).map(u => u.id);
+      result = result.filter(x => !x.vendedor_id || mis.includes(x.vendedor_id) || x.vendedor_id === session.id);
+    } else if (session.rol === 'gerente') {
+      const eq = allEquipos.find(e => e.gerente_id === session.id);
+      if (eq) {
+        const ids = [...(eq.supervisores_ids || []), ...(eq.vendedores_ids || []), eq.gerente_id].filter(Boolean);
+        result = result.filter(x => !x.vendedor_id || ids.includes(x.vendedor_id));
+      }
+    }
+    return result;
+  }
+
   async function loadReportes() {
-    const [leads, ventas, vehiculos, usuarios] = await Promise.all([
-      Storage.get('leads'), Storage.get('ventas'), Storage.get('vehiculos'), Storage.get('usuarios')
+    const [leads, ventas, vehiculos] = await Promise.all([
+      Storage.get('leads'), Storage.get('ventas'), Storage.get('vehiculos')
     ]);
 
-    const from = getDateRange();
-    const filteredVentas = ventas.filter(v => v.fecha_venta >= from);
-    const filteredLeads = leads.filter(l => l.fecha_creacion && l.fecha_creacion.slice(0,10) >= from);
+    const filteredVentas = applyTeamFilter(ventas, 'fecha_venta');
+    const filteredLeads = applyTeamFilter(leads, 'fecha_creacion');
+
+    const allLeadsInPeriod = leads.filter(l => (l.fecha_creacion || '').slice(0,10) >= getDateRange());
 
     const conversion = filteredLeads.length > 0 ? Math.round(filteredVentas.length / filteredLeads.length * 100) : 0;
     const ingresos = filteredVentas.reduce((s, v) => s + (v.precio_final || 0), 0);
@@ -136,8 +226,8 @@
     buildVentasMes(filteredVentas);
     buildFuentes(filteredLeads);
     buildStock(vehiculos);
-    buildFunnel(leads);
-    buildRanking(filteredVentas, filteredLeads, usuarios);
+    buildFunnel(filteredLeads);
+    buildRanking(filteredVentas, filteredLeads, allUsuarios);
   }
 
   const CHART_DEFAULTS = {
@@ -228,7 +318,7 @@
       </tr>`).join('') || '<tr><td colspan="5" class="text-muted" style="padding:20px;text-align:center">Sin datos</td></tr>';
   }
 
-  loadReportes();
+  initFilters();
 </script>
 </body>
 </html>

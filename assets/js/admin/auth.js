@@ -44,7 +44,7 @@ const Auth = {
   },
 
   canEdit(session) {
-    return session && ['admin', 'gerente'].includes(session.rol);
+    return session && ['admin', 'gerente', 'supervisor'].includes(session.rol);
   },
 
   isAdmin(session) {
@@ -53,6 +53,48 @@ const Auth = {
 
   isGerente(session) {
     return session && ['admin', 'gerente'].includes(session.rol);
+  },
+
+  isSupervisor(session) {
+    return session && ['admin', 'gerente', 'supervisor'].includes(session.rol);
+  },
+
+  // Roles que este session puede crear
+  creatableRoles(session) {
+    if (!session) return [];
+    if (session.rol === 'admin') return ['admin', 'gerente', 'supervisor', 'vendedor'];
+    if (session.rol === 'gerente') return ['supervisor', 'vendedor'];
+    if (session.rol === 'supervisor') return ['vendedor'];
+    return [];
+  },
+
+  // IDs de usuarios visibles para este session (null = todos)
+  async getVisibleUserIds(session) {
+    if (session.rol === 'admin') return null;
+    const [usuarios, equipos] = await Promise.all([
+      Storage.get('usuarios'), Storage.get('equipos')
+    ]);
+    if (session.rol === 'vendedor') return [session.id];
+    if (session.rol === 'supervisor') {
+      const propios = usuarios.filter(u => u.supervisor_id === session.id).map(u => u.id);
+      return [session.id, ...propios];
+    }
+    if (session.rol === 'gerente') {
+      const equipo = equipos.find(e => e.gerente_id === session.id);
+      if (!equipo) return [session.id];
+      return [session.id, ...(equipo.supervisores_ids || []), ...(equipo.vendedores_ids || [])];
+    }
+    return [session.id];
+  },
+
+  // Equipo al que pertenece el session
+  async getMyEquipo(session) {
+    const equipos = await Storage.get('equipos');
+    if (session.rol === 'gerente') return equipos.find(e => e.gerente_id === session.id) || null;
+    const usuarios = await Storage.get('usuarios');
+    const me = usuarios.find(u => u.id === session.id);
+    if (!me || !me.equipo_id) return null;
+    return equipos.find(e => e.id === me.equipo_id) || null;
   }
 };
 

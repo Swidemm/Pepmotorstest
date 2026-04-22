@@ -15,7 +15,6 @@
     <div id="topbar-container"></div>
     <div class="admin-content">
 
-      <!-- Page Header -->
       <div class="page-header-admin flex justify-between items-center mb-6">
         <div>
           <h1 class="page-title">Dashboard</h1>
@@ -32,136 +31,80 @@
       <!-- Stats -->
       <div class="stats-grid-admin">
         <div class="stat-card">
-          <div class="stat-card-header">
-            <span class="stat-card-label">Vehículos disponibles</span>
-            <div class="stat-card-icon red">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            </div>
-          </div>
+          <div class="stat-card-header"><span class="stat-card-label">Vehículos disponibles</span><div class="stat-card-icon red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div></div>
           <p class="stat-card-value" id="stat-vehiculos">—</p>
           <p class="stat-card-change up">Stock actual</p>
         </div>
         <div class="stat-card">
-          <div class="stat-card-header">
-            <span class="stat-card-label">Leads nuevos hoy</span>
-            <div class="stat-card-icon blue">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            </div>
-          </div>
+          <div class="stat-card-header"><span class="stat-card-label">Leads nuevos hoy</span><div class="stat-card-icon blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div></div>
           <p class="stat-card-value" id="stat-leads-hoy">—</p>
           <p class="stat-card-change up">Sin contactar</p>
         </div>
         <div class="stat-card">
-          <div class="stat-card-header">
-            <span class="stat-card-label">Ventas este mes</span>
-            <div class="stat-card-icon green">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-            </div>
-          </div>
+          <div class="stat-card-header"><span class="stat-card-label">Ventas este mes</span><div class="stat-card-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div></div>
           <p class="stat-card-value" id="stat-ventas">—</p>
           <p class="stat-card-change up">Este mes</p>
         </div>
         <div class="stat-card">
-          <div class="stat-card-header">
-            <span class="stat-card-label">Test drives pendientes</span>
-            <div class="stat-card-icon yellow">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-          </div>
+          <div class="stat-card-header"><span class="stat-card-label">Test drives pendientes</span><div class="stat-card-icon yellow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div></div>
           <p class="stat-card-value" id="stat-testdrives">—</p>
           <p class="stat-card-change">Próximos</p>
         </div>
       </div>
 
-      <!-- Charts + Recent -->
+      <!-- Charts + Quick access -->
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px">
-        <!-- Chart leads -->
         <div class="chart-card">
-          <div class="chart-card-header">
-            <h3 class="chart-card-title">Leads últimos 7 días</h3>
-          </div>
-          <div class="chart-wrapper" style="height:220px">
-            <canvas id="chart-leads"></canvas>
-          </div>
+          <div class="chart-card-header"><h3 class="chart-card-title">Leads últimos 7 días</h3></div>
+          <div class="chart-wrapper" style="height:220px"><canvas id="chart-leads"></canvas></div>
         </div>
-
-        <!-- Quick access -->
         <div class="chart-card">
-          <div class="chart-card-header">
-            <h3 class="chart-card-title">Accesos rápidos</h3>
-          </div>
+          <div class="chart-card-header"><h3 class="chart-card-title">Accesos rápidos</h3></div>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; padding-top:4px">
-            <a href="vehiculos.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              Vehículos
-            </a>
-            <a href="leads.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              Leads
-            </a>
-            <a href="agenda.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Agenda
-            </a>
-            <a href="ventas.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-              Ventas
-            </a>
-            <a href="clientes.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-              Clientes
-            </a>
-            <a href="configuracion.html" class="btn btn-secondary btn-block" style="justify-content:flex-start">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-              Config
-            </a>
+            <a href="vehiculos.html" class="btn btn-secondary btn-block" style="justify-content:flex-start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Vehículos</a>
+            <a href="leads.html" class="btn btn-secondary btn-block" style="justify-content:flex-start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Leads</a>
+            <a href="agenda.html" class="btn btn-secondary btn-block" style="justify-content:flex-start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Agenda</a>
+            <a href="ventas.html" class="btn btn-secondary btn-block" style="justify-content:flex-start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Ventas</a>
+            <a href="clientes.html" class="btn btn-secondary btn-block" style="justify-content:flex-start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clientes</a>
+            <a href="configuracion.html" class="btn btn-secondary btn-block" style="justify-content:flex-start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Config</a>
           </div>
         </div>
       </div>
 
       <!-- Recent activity -->
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px">
-        <!-- Recent leads -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px">
         <div class="table-container">
           <div class="table-header">
             <h3 style="font-size:15px; font-weight:700">Últimos leads</h3>
             <a href="leads.html" class="btn btn-outline btn-sm">Ver todos</a>
           </div>
           <table>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Vehículo</th>
-                <th>Estado</th>
-                <th>Fecha</th>
-              </tr>
-            </thead>
-            <tbody id="recent-leads">
-              <tr><td colspan="4"><div class="skeleton" style="height:14px; margin:4px 0"></div></td></tr>
-            </tbody>
+            <thead><tr><th>Nombre</th><th>Vehículo</th><th>Estado</th><th>Fecha</th></tr></thead>
+            <tbody id="recent-leads"><tr><td colspan="4"><div class="skeleton" style="height:14px;margin:4px 0"></div></td></tr></tbody>
           </table>
         </div>
-
-        <!-- Recent sales -->
         <div class="table-container">
           <div class="table-header">
             <h3 style="font-size:15px; font-weight:700">Últimas ventas</h3>
             <a href="ventas.html" class="btn btn-outline btn-sm">Ver todas</a>
           </div>
           <table>
-            <thead>
-              <tr>
-                <th>Cliente</th>
-                <th>Vehículo</th>
-                <th>Precio final</th>
-                <th>Fecha</th>
-              </tr>
-            </thead>
-            <tbody id="recent-ventas">
-              <tr><td colspan="4"><div class="skeleton" style="height:14px; margin:4px 0"></div></td></tr>
-            </tbody>
+            <thead><tr><th>Cliente</th><th>Vehículo</th><th>Precio final</th><th>Fecha</th></tr></thead>
+            <tbody id="recent-ventas"><tr><td colspan="4"><div class="skeleton" style="height:14px;margin:4px 0"></div></td></tr></tbody>
           </table>
         </div>
+      </div>
+
+      <!-- ===== PANEL EQUIPOS / USUARIOS ===== -->
+      <div id="team-panel" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div>
+            <h2 style="font-size:18px;font-weight:700;color:var(--color-white)" id="team-panel-title">Gestión de equipos</h2>
+            <p style="font-size:13px;color:var(--color-gray);margin-top:2px" id="team-panel-sub"></p>
+          </div>
+          <div style="display:flex;gap:8px" id="team-panel-actions"></div>
+        </div>
+        <div id="team-panel-body"></div>
       </div>
 
     </div>
@@ -169,6 +112,88 @@
 </div>
 
 <div class="toast-container"></div>
+
+<!-- Modal crear/editar usuario -->
+<div class="modal-overlay" id="user-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="user-modal-title">Nuevo usuario</h2>
+      <button class="modal-close" onclick="closeModal('user-modal')" data-modal-close>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="um-id">
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Nombre *</label>
+          <input type="text" class="form-control" id="um-nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Rol *</label>
+          <select class="form-control" id="um-rol" onchange="onRolChange()"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" class="form-control" id="um-email" required>
+      </div>
+      <div class="form-group">
+        <label>Password *</label>
+        <input type="text" class="form-control" id="um-password" placeholder="Mínimo 6 caracteres">
+      </div>
+      <div class="form-group" id="um-equipo-group" style="display:none">
+        <label>Equipo</label>
+        <select class="form-control" id="um-equipo"></select>
+      </div>
+      <div class="form-group" id="um-supervisor-group" style="display:none">
+        <label>Supervisor asignado</label>
+        <select class="form-control" id="um-supervisor"></select>
+      </div>
+      <div class="form-group" id="um-gerente-group" style="display:none">
+        <label>Gerente asignado</label>
+        <select class="form-control" id="um-gerente"></select>
+      </div>
+      <div class="form-group" style="display:flex;align-items:center;gap:10px">
+        <input type="checkbox" id="um-activo" checked>
+        <label for="um-activo" style="margin-bottom:0;cursor:pointer">Usuario activo</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('user-modal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveUser()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal crear equipo -->
+<div class="modal-overlay" id="equipo-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="equipo-modal-title">Nuevo equipo</h2>
+      <button class="modal-close" onclick="closeModal('equipo-modal')" data-modal-close>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="em-id">
+      <div class="form-group">
+        <label>Nombre del equipo *</label>
+        <input type="text" class="form-control" id="em-nombre" required>
+      </div>
+      <div class="form-group">
+        <label>Gerente</label>
+        <select class="form-control" id="em-gerente">
+          <option value="">Sin asignar</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('equipo-modal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveEquipo()">Guardar</button>
+    </div>
+  </div>
+</div>
 
 <script src="../assets/js/storage.js"></script>
 <script src="../assets/js/admin/auth.js"></script>
@@ -181,44 +206,50 @@
 
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Buenos días' : hour < 18 ? 'Buenas tardes' : 'Buenas noches';
-  document.getElementById('greeting').textContent = `${greet}, ${session.nombre} 👋`;
+  document.getElementById('greeting').textContent = `${greet}, ${session.nombre}`;
 
-  const statusMap = { nuevo: 'badge-nuevo', contactado: 'badge-contactado', negociacion: 'badge-negociacion', cerrado: 'badge-cerrado', perdido: 'badge-perdido' };
+  const statusMap = { nuevo: 'badge-nuevo', contactado: 'badge-contactado', negociacion: 'badge-negociacion', cerrado: 'badge-cerrado', perdido: 'badge-perdido', vendido: 'badge-vendido' };
+  const statusLabel = { nuevo: 'Nuevo', contactado: 'Contactado', negociacion: 'En negociación', cerrado: 'Cerrado', perdido: 'Perdido', vendido: 'Vendido' };
+  const rolLabel = { admin: 'Admin', gerente: 'Gerente', supervisor: 'Supervisor', vendedor: 'Vendedor' };
+  const rolColor = { admin: 'var(--color-danger)', gerente: 'var(--color-primary)', supervisor: 'var(--color-info)', vendedor: 'var(--color-success)' };
+
+  window.closeModal = function(id) { document.getElementById(id).classList.remove('active'); };
+
+  let allUsuarios = [], allEquipos = [], allLeads = [], allVentas = [], allVehiculos = [], allAgenda = [];
 
   async function loadDashboard() {
-    const [vehiculos, leads, ventas, agenda] = await Promise.all([
-      Storage.get('vehiculos'), Storage.get('leads'), Storage.get('ventas'), Storage.get('agenda')
+    [allVehiculos, allLeads, allVentas, allAgenda, allUsuarios, allEquipos] = await Promise.all([
+      Storage.get('vehiculos'), Storage.get('leads'), Storage.get('ventas'),
+      Storage.get('agenda'), Storage.get('usuarios'), Storage.get('equipos')
     ]);
 
-    const disponibles = vehiculos.filter(v => v.estado === 'disponible').length;
+    const disponibles = allVehiculos.filter(v => v.estado === 'disponible').length;
     const today = new Date().toISOString().slice(0, 10);
-    const leadsHoy = leads.filter(l => l.fecha_creacion && l.fecha_creacion.slice(0, 10) === today).length;
+    const leadsHoy = allLeads.filter(l => l.fecha_creacion && l.fecha_creacion.slice(0, 10) === today).length;
     const mesActual = new Date().toISOString().slice(0, 7);
-    const ventasMes = ventas.filter(v => v.fecha_venta && v.fecha_venta.slice(0, 7) === mesActual).length;
-    const testDrives = agenda.filter(a => a.tipo === 'test_drive' && !a.completado).length;
+    const ventasMes = allVentas.filter(v => v.fecha_venta && v.fecha_venta.slice(0, 7) === mesActual).length;
+    const testDrives = allAgenda.filter(a => a.tipo === 'test_drive' && !a.completado).length;
 
     document.getElementById('stat-vehiculos').textContent = disponibles;
     document.getElementById('stat-leads-hoy').textContent = leadsHoy;
     document.getElementById('stat-ventas').textContent = ventasMes;
     document.getElementById('stat-testdrives').textContent = testDrives;
 
-    const leadsNewCount = leads.filter(l => l.estado === 'nuevo').length;
+    const leadsNewCount = allLeads.filter(l => l.estado === 'nuevo').length;
     const badge = document.getElementById('leads-badge');
     if (badge) { badge.textContent = leadsNewCount; badge.style.display = leadsNewCount ? '' : 'none'; }
 
-    // Recent leads
-    const recentLeads = [...leads].sort((a,b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion)).slice(0, 5);
+    const recentLeads = [...allLeads].sort((a,b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion)).slice(0, 5);
     document.getElementById('recent-leads').innerHTML = recentLeads.length
       ? recentLeads.map(l => `<tr>
           <td style="font-weight:600;color:var(--color-white)">${l.nombre}</td>
           <td>${l.vehiculo_texto || '—'}</td>
-          <td><span class="status-badge ${statusMap[l.estado] || ''}">${l.estado}</span></td>
+          <td><span class="status-badge ${statusMap[l.estado] || ''}">${statusLabel[l.estado] || l.estado}</span></td>
           <td>${l.fecha_creacion ? l.fecha_creacion.slice(0,10) : '—'}</td>
         </tr>`).join('')
       : '<tr><td colspan="4" class="text-muted" style="padding:20px;text-align:center">Sin leads aún</td></tr>';
 
-    // Recent ventas
-    const recentVentas = [...ventas].sort((a,b) => new Date(b.fecha_venta) - new Date(a.fecha_venta)).slice(0, 5);
+    const recentVentas = [...allVentas].sort((a,b) => new Date(b.fecha_venta) - new Date(a.fecha_venta)).slice(0, 5);
     document.getElementById('recent-ventas').innerHTML = recentVentas.length
       ? recentVentas.map(v => `<tr>
           <td style="font-weight:600;color:var(--color-white)">${v.cliente_nombre}</td>
@@ -228,40 +259,327 @@
         </tr>`).join('')
       : '<tr><td colspan="4" class="text-muted" style="padding:20px;text-align:center">Sin ventas aún</td></tr>';
 
-    // Chart
-    const last7 = [];
-    const labels = [];
+    const last7 = [], labels = [];
     for (let i = 6; i >= 0; i--) {
       const d = new Date(); d.setDate(d.getDate() - i);
       const dateStr = d.toISOString().slice(0, 10);
       labels.push(d.toLocaleDateString('es-AR', { weekday: 'short', day: 'numeric' }));
-      last7.push(leads.filter(l => l.fecha_creacion && l.fecha_creacion.slice(0, 10) === dateStr).length);
+      last7.push(allLeads.filter(l => l.fecha_creacion && l.fecha_creacion.slice(0, 10) === dateStr).length);
     }
-
     new Chart(document.getElementById('chart-leads'), {
       type: 'bar',
-      data: {
-        labels,
-        datasets: [{
-          label: 'Leads',
-          data: last7,
-          backgroundColor: 'rgba(201,160,96,0.7)',
-          borderColor: '#C9A060',
-          borderWidth: 1,
-          borderRadius: 6,
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: { beginAtZero: true, ticks: { color: '#6B6B6B', stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.05)' } },
-          x: { ticks: { color: '#6B6B6B' }, grid: { display: false } }
+      data: { labels, datasets: [{ label: 'Leads', data: last7, backgroundColor: 'rgba(201,160,96,0.7)', borderColor: '#C9A060', borderWidth: 1, borderRadius: 6 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: '#6B6B6B', stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.05)' } }, x: { ticks: { color: '#6B6B6B' }, grid: { display: false } } } }
+    });
+
+    renderTeamPanel();
+  }
+
+  // ===== TEAM PANEL =====
+  function renderTeamPanel() {
+    const panel = document.getElementById('team-panel');
+    if (session.rol === 'vendedor') return;
+    panel.style.display = '';
+
+    const actionsEl = document.getElementById('team-panel-actions');
+    const bodyEl = document.getElementById('team-panel-body');
+    const subEl = document.getElementById('team-panel-sub');
+
+    if (session.rol === 'admin') {
+      document.getElementById('team-panel-title').textContent = 'Gestión de equipos y usuarios';
+      subEl.textContent = 'Control total sobre todos los equipos y roles';
+      actionsEl.innerHTML = `
+        <button class="btn btn-outline btn-sm" onclick="openEquipoModal()">+ Nuevo equipo</button>
+        <button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Nuevo usuario</button>`;
+      renderAdminTeams(bodyEl);
+    } else if (session.rol === 'gerente') {
+      document.getElementById('team-panel-title').textContent = 'Mi equipo';
+      const equipo = allEquipos.find(e => e.gerente_id === session.id);
+      subEl.textContent = equipo ? equipo.nombre : 'Sin equipo asignado';
+      actionsEl.innerHTML = `<button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Agregar miembro</button>`;
+      renderGerenteTeam(bodyEl, equipo);
+    } else if (session.rol === 'supervisor') {
+      document.getElementById('team-panel-title').textContent = 'Mis vendedores';
+      const mis = allUsuarios.filter(u => u.supervisor_id === session.id);
+      subEl.textContent = `${mis.length} vendedor${mis.length !== 1 ? 'es' : ''} asignado${mis.length !== 1 ? 's' : ''}`;
+      actionsEl.innerHTML = `<button class="btn btn-primary btn-sm" onclick="openUserModal('vendedor')">+ Agregar vendedor</button>`;
+      renderSupervisorTeam(bodyEl);
+    }
+  }
+
+  function userCard(u, showActions = true) {
+    const initials = u.nombre.split(' ').map(x => x[0]).join('').toUpperCase().slice(0,2);
+    return `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--color-dark-3);border-radius:8px;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:34px;height:34px;border-radius:50%;background:var(--color-dark);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:${rolColor[u.rol] || 'var(--color-white)'};border:1px solid ${rolColor[u.rol] || 'var(--color-dark-3)'}">${initials}</div>
+          <div>
+            <p style="font-size:13px;font-weight:600;color:var(--color-white)">${u.nombre}</p>
+            <p style="font-size:11px;color:var(--color-gray)">${u.email}</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:${rolColor[u.rol]}22;color:${rolColor[u.rol]}">${rolLabel[u.rol]}</span>
+          ${!u.activo ? '<span style="font-size:11px;color:var(--color-gray)">(inactivo)</span>' : ''}
+          ${showActions ? `<button class="action-btn action-btn-edit" onclick="openUserModal(null,'${u.id}')" title="Editar">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>` : ''}
+          ${showActions && session.rol === 'admin' && u.id !== session.id ? `<button class="action-btn action-btn-delete" onclick="deleteUser('${u.id}')" title="Eliminar">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+          </button>` : ''}
+        </div>
+      </div>`;
+  }
+
+  function teamCard(equipo, usuarios) {
+    const gerente = usuarios.find(u => u.id === equipo.gerente_id);
+    const supervisores = usuarios.filter(u => (equipo.supervisores_ids || []).includes(u.id));
+    const vendedores = usuarios.filter(u => (equipo.vendedores_ids || []).includes(u.id));
+    return `
+      <div class="chart-card" style="margin-bottom:16px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div>
+            <h3 style="font-size:16px;font-weight:700;color:var(--color-white)">${equipo.nombre}</h3>
+            <p style="font-size:12px;color:var(--color-gray)">${1 + supervisores.length + vendedores.length} miembros</p>
+          </div>
+          ${session.rol === 'admin' ? `
+            <div style="display:flex;gap:6px">
+              <button class="btn btn-outline btn-sm" onclick="openEquipoModal('${equipo.id}')">Editar equipo</button>
+              <button class="action-btn action-btn-delete" onclick="deleteEquipo('${equipo.id}')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+              </button>
+            </div>` : ''}
+        </div>
+        ${gerente ? `
+          <p style="font-size:11px;font-weight:700;color:var(--color-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Gerente</p>
+          ${userCard(gerente)}` : '<p style="font-size:12px;color:var(--color-gray);margin-bottom:10px">Sin gerente asignado</p>'}
+        ${supervisores.length ? `
+          <p style="font-size:11px;font-weight:700;color:var(--color-gray);text-transform:uppercase;letter-spacing:1px;margin:12px 0 6px;padding-left:10px;border-left:2px solid var(--color-dark-3)">Supervisores</p>
+          <div style="padding-left:16px">${supervisores.map(u => userCard(u)).join('')}</div>` : ''}
+        ${vendedores.length ? `
+          <p style="font-size:11px;font-weight:700;color:var(--color-gray);text-transform:uppercase;letter-spacing:1px;margin:12px 0 6px;padding-left:24px;border-left:2px solid var(--color-dark-3)">Vendedores</p>
+          <div style="padding-left:32px">${vendedores.map(u => userCard(u)).join('')}</div>` : ''}
+      </div>`;
+  }
+
+  function renderAdminTeams(el) {
+    // Sin equipo
+    const sinEquipo = allUsuarios.filter(u => {
+      if (u.rol === 'admin') return false;
+      const inTeam = allEquipos.some(e =>
+        e.gerente_id === u.id ||
+        (e.supervisores_ids || []).includes(u.id) ||
+        (e.vendedores_ids || []).includes(u.id)
+      );
+      return !inTeam;
+    });
+
+    let html = allEquipos.map(e => teamCard(e, allUsuarios)).join('');
+
+    // Admin mismo
+    const adminUser = allUsuarios.find(u => u.id === session.id);
+    if (adminUser) {
+      html = `<div class="chart-card" style="margin-bottom:16px">
+        <p style="font-size:11px;font-weight:700;color:var(--color-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Administrador del sistema</p>
+        ${userCard(adminUser, false)}
+      </div>` + html;
+    }
+
+    if (sinEquipo.length) {
+      html += `<div class="chart-card">
+        <p style="font-size:11px;font-weight:700;color:var(--color-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Sin equipo asignado</p>
+        ${sinEquipo.map(u => userCard(u)).join('')}
+      </div>`;
+    }
+    el.innerHTML = html || '<p style="color:var(--color-gray);font-size:13px">No hay equipos creados aún.</p>';
+  }
+
+  function renderGerenteTeam(el, equipo) {
+    if (!equipo) { el.innerHTML = '<p style="color:var(--color-gray);font-size:13px">No tenés equipo asignado. Contactá al administrador.</p>'; return; }
+    el.innerHTML = teamCard(equipo, allUsuarios);
+  }
+
+  function renderSupervisorTeam(el) {
+    const vendedores = allUsuarios.filter(u => u.supervisor_id === session.id);
+    if (!vendedores.length) { el.innerHTML = '<p style="color:var(--color-gray);font-size:13px">No tenés vendedores asignados aún.</p>'; return; }
+    el.innerHTML = `<div class="chart-card">
+      <p style="font-size:11px;font-weight:700;color:var(--color-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Mis vendedores</p>
+      ${vendedores.map(u => userCard(u)).join('')}
+    </div>`;
+  }
+
+  // ===== USER MODAL =====
+  function openUserModal(defaultRol = null, editId = null) {
+    document.getElementById('um-id').value = editId || '';
+    document.getElementById('user-modal-title').textContent = editId ? 'Editar usuario' : 'Nuevo usuario';
+
+    const rolSelect = document.getElementById('um-rol');
+    const roles = Auth.creatableRoles(session);
+    rolSelect.innerHTML = roles.map(r => `<option value="${r}">${rolLabel[r]}</option>`).join('');
+    if (defaultRol && roles.includes(defaultRol)) rolSelect.value = defaultRol;
+
+    const equipoSel = document.getElementById('um-equipo');
+    equipoSel.innerHTML = '<option value="">Sin equipo</option>' + allEquipos.map(e => `<option value="${e.id}">${e.nombre}</option>`).join('');
+
+    const supervSel = document.getElementById('um-supervisor');
+    supervSel.innerHTML = '<option value="">Sin supervisor</option>' + allUsuarios.filter(u => u.rol === 'supervisor' && u.activo).map(u => `<option value="${u.id}">${u.nombre}</option>`).join('');
+
+    const gerenteSel = document.getElementById('um-gerente');
+    gerenteSel.innerHTML = '<option value="">Sin gerente</option>' + allUsuarios.filter(u => u.rol === 'gerente' && u.activo).map(u => `<option value="${u.id}">${u.nombre}</option>`).join('');
+
+    if (editId) {
+      const u = allUsuarios.find(x => x.id === editId);
+      if (u) {
+        document.getElementById('um-nombre').value = u.nombre;
+        document.getElementById('um-email').value = u.email;
+        document.getElementById('um-password').value = u.password || '';
+        document.getElementById('um-activo').checked = u.activo;
+        if (roles.includes(u.rol)) rolSelect.value = u.rol;
+        if (u.equipo_id) equipoSel.value = u.equipo_id;
+        if (u.supervisor_id) supervSel.value = u.supervisor_id;
+        if (u.gerente_id) gerenteSel.value = u.gerente_id;
+      }
+    } else {
+      document.getElementById('um-nombre').value = '';
+      document.getElementById('um-email').value = '';
+      document.getElementById('um-password').value = '';
+      document.getElementById('um-activo').checked = true;
+      // Pre-asignar equipo si no es admin
+      if (session.rol !== 'admin') {
+        const myEquipo = allEquipos.find(e => e.gerente_id === session.id || (e.supervisores_ids || []).includes(session.id));
+        if (myEquipo) equipoSel.value = myEquipo.id;
+        if (session.rol === 'supervisor') supervSel.value = session.id;
+      }
+    }
+
+    onRolChange();
+    document.getElementById('user-modal').classList.add('active');
+  }
+
+  window.onRolChange = function() {
+    const rol = document.getElementById('um-rol').value;
+    const isAdmin = session.rol === 'admin';
+    document.getElementById('um-equipo-group').style.display = (isAdmin && rol !== 'admin') ? '' : 'none';
+    document.getElementById('um-supervisor-group').style.display = (rol === 'vendedor') ? '' : 'none';
+    document.getElementById('um-gerente-group').style.display = (rol === 'supervisor' && isAdmin) ? '' : 'none';
+  };
+
+  window.saveUser = async function() {
+    const nombre = document.getElementById('um-nombre').value.trim();
+    const email = document.getElementById('um-email').value.trim();
+    const password = document.getElementById('um-password').value.trim();
+    const rol = document.getElementById('um-rol').value;
+    if (!nombre || !email) { showToast('Nombre y email son obligatorios', 'error'); return; }
+
+    const id = document.getElementById('um-id').value;
+    const data = {
+      nombre, email, rol,
+      activo: document.getElementById('um-activo').checked,
+    };
+    if (password) data.password = password;
+    if (session.rol === 'admin') {
+      const eqVal = document.getElementById('um-equipo').value;
+      if (eqVal) data.equipo_id = eqVal;
+    } else {
+      const myEquipo = allEquipos.find(e => e.gerente_id === session.id || (e.supervisores_ids || []).includes(session.id));
+      if (myEquipo) data.equipo_id = myEquipo.id;
+    }
+    if (rol === 'vendedor') {
+      const sv = document.getElementById('um-supervisor').value;
+      if (sv) data.supervisor_id = sv;
+    }
+    if (rol === 'supervisor' && session.rol === 'admin') {
+      const ge = document.getElementById('um-gerente').value;
+      if (ge) data.gerente_id = ge;
+    }
+
+    if (id) {
+      await Storage.update('usuarios', id, data);
+      showToast('Usuario actualizado', 'success');
+    } else {
+      if (!password) { showToast('La contraseña es obligatoria para nuevos usuarios', 'error'); return; }
+      data.id = Storage.generateId('u');
+      await Storage.add('usuarios', data);
+      // Agregar al equipo si corresponde
+      if (data.equipo_id) {
+        const equipos = await Storage.get('equipos');
+        const eq = equipos.find(e => e.id === data.equipo_id);
+        if (eq) {
+          if (rol === 'supervisor') {
+            eq.supervisores_ids = [...(eq.supervisores_ids || []), data.id];
+          } else if (rol === 'vendedor') {
+            eq.vendedores_ids = [...(eq.vendedores_ids || []), data.id];
+          } else if (rol === 'gerente') {
+            eq.gerente_id = data.id;
+          }
+          await Storage.update('equipos', eq.id, eq);
         }
       }
+      showToast('Usuario creado', 'success');
+    }
+
+    closeModal('user-modal');
+    allUsuarios = await Storage.get('usuarios');
+    allEquipos = await Storage.get('equipos');
+    renderTeamPanel();
+  };
+
+  window.deleteUser = function(id) {
+    const u = allUsuarios.find(x => x.id === id);
+    confirmAction(`¿Eliminar al usuario "${u.nombre}"?`, async () => {
+      await Storage.delete('usuarios', id);
+      allUsuarios = await Storage.get('usuarios');
+      renderTeamPanel();
+      showToast('Usuario eliminado', 'success');
     });
+  };
+
+  // ===== EQUIPO MODAL =====
+  function openEquipoModal(editId = null) {
+    document.getElementById('em-id').value = editId || '';
+    document.getElementById('equipo-modal-title').textContent = editId ? 'Editar equipo' : 'Nuevo equipo';
+    const gerenteSel = document.getElementById('em-gerente');
+    gerenteSel.innerHTML = '<option value="">Sin gerente</option>' + allUsuarios.filter(u => u.rol === 'gerente' && u.activo).map(u => `<option value="${u.id}">${u.nombre}</option>`).join('');
+    if (editId) {
+      const e = allEquipos.find(x => x.id === editId);
+      if (e) { document.getElementById('em-nombre').value = e.nombre; gerenteSel.value = e.gerente_id || ''; }
+    } else {
+      document.getElementById('em-nombre').value = '';
+      gerenteSel.value = '';
+    }
+    document.getElementById('equipo-modal').classList.add('active');
   }
+
+  window.saveEquipo = async function() {
+    const nombre = document.getElementById('em-nombre').value.trim();
+    if (!nombre) { showToast('El nombre del equipo es obligatorio', 'error'); return; }
+    const id = document.getElementById('em-id').value;
+    const data = { nombre, gerente_id: document.getElementById('em-gerente').value || null };
+    if (id) {
+      await Storage.update('equipos', id, data);
+      showToast('Equipo actualizado', 'success');
+    } else {
+      data.id = Storage.generateId('eq');
+      data.supervisores_ids = [];
+      data.vendedores_ids = [];
+      await Storage.add('equipos', data);
+      showToast('Equipo creado', 'success');
+    }
+    closeModal('equipo-modal');
+    allEquipos = await Storage.get('equipos');
+    allUsuarios = await Storage.get('usuarios');
+    renderTeamPanel();
+  };
+
+  window.deleteEquipo = function(id) {
+    const e = allEquipos.find(x => x.id === id);
+    confirmAction(`¿Eliminar el equipo "${e.nombre}"? Los usuarios no serán eliminados.`, async () => {
+      await Storage.delete('equipos', id);
+      allEquipos = await Storage.get('equipos');
+      renderTeamPanel();
+      showToast('Equipo eliminado', 'success');
+    });
+  };
 
   loadDashboard();
 </script>

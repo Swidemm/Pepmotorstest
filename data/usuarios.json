@@ -1,7 +1,7 @@
 [
   {
     "id": "u001",
-    "nombre": "Admin PEP",
+    "nombre": "Administrador",
     "email": "admin@pepmotors.com",
     "password": "admin1234",
     "rol": "admin",
@@ -9,26 +9,31 @@
   },
   {
     "id": "u002",
-    "nombre": "Valentina Cruz",
-    "email": "vcruz@pepmotors.com",
-    "password": "valen123",
-    "rol": "vendedor",
-    "activo": true
+    "nombre": "Gerente Demo",
+    "email": "gerente@pepmotors.com",
+    "password": "gerente1234",
+    "rol": "gerente",
+    "activo": true,
+    "equipo_id": "eq001"
   },
   {
     "id": "u003",
-    "nombre": "Marcos Herrera",
-    "email": "mherrera@pepmotors.com",
-    "password": "marcos123",
-    "rol": "vendedor",
-    "activo": true
+    "nombre": "Supervisor Demo",
+    "email": "supervisor@pepmotors.com",
+    "password": "supervisor1234",
+    "rol": "supervisor",
+    "activo": true,
+    "equipo_id": "eq001",
+    "gerente_id": "u002"
   },
   {
     "id": "u004",
-    "nombre": "Laura Paz",
-    "email": "lpaz@pepmotors.com",
-    "password": "laura123",
-    "rol": "gerente",
-    "activo": true
+    "nombre": "Vendedor Demo",
+    "email": "vendedor@pepmotors.com",
+    "password": "vendedor1234",
+    "rol": "vendedor",
+    "activo": true,
+    "equipo_id": "eq001",
+    "supervisor_id": "u003"
   }
 ]

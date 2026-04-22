@@ -77,25 +77,15 @@
   ],
   "equipo": [
     {
-      "nombre": "Pedro Espósito",
-      "cargo": "Gerente General",
+      "nombre": "Administrador",
+      "cargo": "Administración",
       "foto": ""
     },
     {
-      "nombre": "Valentina Cruz",
-      "cargo": "Asesora Comercial",
-      "foto": ""
-    },
-    {
-      "nombre": "Marcos Herrera",
+      "nombre": "Vendedor Demo",
       "cargo": "Asesor Comercial",
       "foto": ""
     },
-    {
-      "nombre": "Laura Paz",
-      "cargo": "Administración y Postventa",
-      "foto": ""
-    }
   ],
   "secciones_home": {
     "destacados": true,
