@@ -180,7 +180,7 @@
 
   async function init() {
     const [config, vehiculos] = await Promise.all([Storage.get('config'), Storage.get('vehiculos')]);
-    allVehicles = vehiculos.filter(v => v.estado !== 'vendido');
+    allVehicles = vehiculos.filter(v => v.estado === 'disponible' || v.estado === 'reservado');
 
     const e = config.empresa || {};
     const ap = config.apariencia || {};
